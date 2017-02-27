@@ -4,7 +4,7 @@
 function checkPassword($i, $p) {
     require("connect.php");
 
-    $result = $dbh->prepare("SELECT COUNT(*) FROM users WHERE User_ID = :i AND pass_word = :p"); // CHANGED implement so that any ID can be used.
+    $result = $dbh->prepare("SELECT COUNT(*) FROM users WHERE User_ID = :i AND Password = :p"); // CHANGED implement so that any ID can be used.
     $result->bindParam(':i', $i);
     $result->bindParam(':p', $p);
     $result->execute();

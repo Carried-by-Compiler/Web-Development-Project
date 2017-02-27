@@ -19,11 +19,11 @@ class User
         $result->execute();
         for ($i = 0; $row = $result->fetch(); $i++) {
             $this->id = $row['User_ID'];
-            $this->firstname = $row['firstname'];
-            $this->lastname = $row['lastname'];
-            $this->email = $row['email'];
-            $this->course = $row['course'];
-            $this->password = $row['pass_word'];
+            $this->firstname = $row['FirstName'];
+            $this->lastname = $row['LastName'];
+            $this->email = $row['Email'];
+            $this->course = $row['Subject'];
+            $this->password = $row['Password'];
         }
         $dbh = null;
     }

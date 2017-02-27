@@ -16,7 +16,7 @@ if (isset($_POST['id'])) {
 
         try {
             require("./loginHelper/connect.php");
-            $result = $dbh->prepare("INSERT INTO users (User_ID, firstname, lastname, email, course, pass_word)
+            $result = $dbh->prepare("INSERT INTO Users (User_ID, FirstName, LastName, Email, Subject, Password)
                                      VALUES (:id, :f_name, :l_name, :e, :c, :pass)");
             $result->bindParam(':id', $_POST['id']);
             $result->bindParam(':f_name', $_POST['f_name']);
