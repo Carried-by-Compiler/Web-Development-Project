@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Web Development Project</title>
+
+        <style media="screen">
+            .registration {
+                display: inline-block;
+
+                margin-right: 50px;
+            }
+
+            .login {
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to our Web Development Project</h1>
+
+        <div class="registration">
+            <form action="insert.php" method="post">
+                ID Number:<br>
+                <input type="text" name="id" required><br>
+                <br>First Name:<br>
+                <input type="text" name="f_name" required><br>
+                <br>Last Name:<br>
+                <input type="text" name="s_name" required><br>
+                <br>University Email:<br>
+                <input type="text" name="email" required><br>
+                <br>Your course of study,:<br>
+                <select name="opt">
+                    <option value="Computer Systems">Computer Systems</option>
+                    <option value="Business Studies">Business Studies</option>
+                    <option value="Computer Engineering">Computer Engineering</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Computer Games Development">Computer Games Development</option>
+                </select><br>
+                <br>Enter password:<br>
+                <input type="password" name="pass" required><br>
+                <br><input type="submit" name="submit" value="Register">
+            </form>
+        </div>
+
+        <div class="login">
+            <form action="login.php" method="post">
+                ID Number:<br>
+                <input type="text" name="id" required><br>
+                <br>Password:<br>
+                <input type="password" name="pass" required><br>
+                <br><input type="submit" name="submit" value="Log-In">
+            </form>
+        </div>
+    </body>
+</html>
