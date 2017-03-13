@@ -2,17 +2,17 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="ForAlternativeLogin.css">
+	<link rel="stylesheet" type="text/css" href="./css/ForAlternativeLogin.css">
 </head>
 <body>
 	<div class="container">
 	<img src="user.png">
-		<form>
+		<form method="post" action="login.php">
 			<div class="form-input">
-				<input type="text" name="username" placeholder="Enter Username/Email">
+				<input type="text" name="id" placeholder="Enter University ID">
 			</div>
 			<div class="form-input">
-				<input type="password" name="password" placeholder="Enter Password">
+				<input type="password" name="pass" placeholder="Enter Password">
 			</div>
 				<input type="submit" name="submit" value="LOGIN" class="btn-login"><br>
 				<a href="#">Forget password?</a>
