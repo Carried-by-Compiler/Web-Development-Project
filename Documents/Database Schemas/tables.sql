@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `Tasks` (
     `Task_ID` int unsigned NOT NULL AUTO_INCREMENT, /* Auto generates task id      */
     `Owner` int unsigned NOT NULL,                  /* References to the user's id */
     `Date_Created` datetime NOT NULL,
-    `Title` varchar(50) DEFAULT NULL,
+    `Title` varchar(255) DEFAULT NULL,
     `Type` varchar(20) DEFAULT NULL,
     `Description` varchar(5000) DEFAULT NULL,
     `Pages` int unsigned DEFAULT 0,
