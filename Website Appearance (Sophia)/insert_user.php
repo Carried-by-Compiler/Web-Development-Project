@@ -28,7 +28,7 @@ if(!isset($_POST['id'])) {
             $result->bindParam(':pass', $_POST['pass']);
             $result->execute();
 
-            echo "Added successfully";
+            echo "<h1>Added successfully</h1>";
 				echo "<a href='AlternativeLogin.html'>Click here to Login</a>";
 
     	} catch (PDOException $exception) {
