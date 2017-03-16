@@ -13,7 +13,7 @@ if (isset($_POST['id']) && isset($_POST['pass'])) {
 	} else {
 		echo "<h1>ID with entered password do not exist</h1>";
 		echo "<a href='index.html'>Click here to register</a>";
-	   echo "<a href='AlternativeLogin.html'>Click here to login again</a>";
+	    echo "<a href='AlternativeLogin.html'>Click here to login again</a>";
 	}
 
 } else {

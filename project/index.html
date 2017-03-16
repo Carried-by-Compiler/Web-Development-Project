@@ -1,56 +1,144 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Web Development Project</title>
+<head>
+	<title>Register For Our Webpage!</title>
+	<link rel="stylesheet" href="SoftDevStyle.css" type="text/css">
 
-        <style media="screen">
-            .registration {
-                display: inline-block;
+	<script type="text/JavaScript">
+	function validateInput()
+	{
+		var x=document.forms["Register"]["Fname"].value;
+		var y=document.forms["Register"]["Sname"].value;
+		var z=document.forms["Register"]["userEmail"].value;
+		var a=document.forms["Register"]["userpassword"].value;
+		var b=document.forms["Register"]["conpass"].value;
+		var txt = "";
+		var valid = true;
+		//boolean allValid = true;
+		
+		if(validateName(x))
+		{
+			txt += "FN Valid\n";
+		}
+		else
+		{
+			txt += "FN Not valid\n";
+			valid = false;
+		}
+		
+		if(validateName(y))
+		{
+			txt += "SN Valid\n"
+		}
+		else
+		{
+			txt += "SN Not valid\n"
+			valid = false;
+		}
+		
+		if(z == "")
+		{
+			txt = "Please enter an email\n";
+			valid = false;
+		}
+		else if(validateEmail(z))
+		{
+			txt += "Email Valid\n"
+		}
+		else
+		{
+			txt += "Email not valid\n"
+			valid = false;
+		}
+		
+		var passValid = false;
+		if(a == "")
+		{
+			txt += "Please enter a password\n";
+			valid = false;
+		}
+		else if(validatePassword(a))
+		{
+			txt += "Password is okay\n";
+			passValid = true;
+			
+		}
+		else
+		{
+			txt += "Password is invalid\n";
+			valid = false;
+		}
+		
+		if(passValid)
+		{
+			if(b == a)
+			{
+				txt += "Confirm pass okay\n";
+			}
+			else
+			{
+				txt += "Confirm pass not the same as password\n";
+				valid = false;
+			}
+		}
+		
+		alert(txt);
+	
+		
+		
+		//This would be removed and redirect to main page if valid if not will remain on the same page
+		if(valid)
+		{
+			alert("Register is okay");
+		}
+		else
+		{
+			alert("Register bad");
+		}
+	}
+	
+	function validateName(name)
+	{
+		var alpha = /^[a-zA-Z]+$/;
+		return alpha.test(name);
+	}
+	
+	function validateEmail(z)
+	{
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(z);
+	}
+	
+	function validatePassword(pass)   
+	{   
+		var passw=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;  
+		return passw.test(pass);
+	}
 
-                margin-right: 50px;
-            }
-
-            .login {
-                display: inline-block;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Welcome to our Web Development Project</h1>
-
-        <div class="registration">
-            <form action="insert.php" method="post">
-                ID Number:<br>
-                <input type="text" name="id" required><br>
-                <br>First Name:<br>
-                <input type="text" name="f_name" required><br>
-                <br>Last Name:<br>
-                <input type="text" name="s_name" required><br>
-                <br>University Email:<br>
-                <input type="text" name="email" required><br>
-                <br>Your course of study,:<br>
-                <select name="opt">
-                    <option value="Computer Systems">Computer Systems</option>
-                    <option value="Business Studies">Business Studies</option>
-                    <option value="Computer Engineering">Computer Engineering</option>
-                    <option value="Physics">Physics</option>
-                    <option value="Computer Games Development">Computer Games Development</option>
-                </select><br>
-                <br>Enter password:<br>
-                <input type="password" name="pass" required><br>
-                <br><input type="submit" name="submit" value="Register">
-            </form>
-        </div>
-
-        <div class="login">
-            <form action="login.php" method="post">
-                ID Number:<br>
-                <input type="text" name="id" required><br>
-                <br>Password:<br>
-                <input type="password" name="pass" required><br>
-                <br><input type="submit" name="submit" value="Log-In">
-            </form>
-        </div>
-    </body>
-</html>
+	</script>
+</head>
+<body>
+	<div class="heading">
+		<span class ="title1">Register For Our WebPage</span>
+		<span class ="title3">
+		
+		<form id="Register" method="post" onsubmit="validateInput();">
+		<label>Fill in your first and last name</label>
+		<input type="text" name="Fname" id="Fname" placeholder="first name" autofocus required/>
+		<input type="text" name="Sname" id="Sname" placeholder="last name" required/>
+		
+		<br><br>
+		<label>Enter your email</label>
+		<input type="text" name="email" id="userEmail" placeholder="number@studentmail.ul.ie" required/><br><br>
+		
+		<label>Enter your password</label>
+		<input type="password" name="password" id="userpassword" required/><br><br>
+		
+		<label>Confirm your password</label>
+		<input type="password" name="password" id="conpass"required/><br><br>
+		<input type="submit" name="submit" value="SUBMIT"/>
+		</form>
+		</span>
+	</div>
+</body>
+<html>

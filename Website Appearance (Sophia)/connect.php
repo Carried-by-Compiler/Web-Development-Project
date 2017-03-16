@@ -1,9 +1,9 @@
 <?php
 $servername = "localhost";
-$username = "group4";
-$pass = "various-also-material-ears";
+$username = "root";
+$pass = "";
 try {
-    $dbh = new PDO("mysql:host=testweb3;dbname=group4", "group4", "various-also-material-ears");
+    $dbh = new PDO("mysql:host=$servername;dbname=group4", $username, $pass);
 } catch (PDOException $exception)  {
     printf("Connection error: %s", $exception->getMessage());
 }
