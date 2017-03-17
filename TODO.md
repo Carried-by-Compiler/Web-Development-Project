@@ -7,3 +7,8 @@
 - [ ] Validation
 - [ ] Confirm password mechanism
 
+# Main User's Page
+- [ ] Task Stream
+* Organize tags for personalized task stream
+- [ ] Create task
+- [ ] Claim task
