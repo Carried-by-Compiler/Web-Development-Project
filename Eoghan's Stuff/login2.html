@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="./css/ForAlternativeLogin.css">
+	
+		<script type="text/JavaScript">
+	function ValidateInfo()
+	{
+		var x=document.forms["LoginPage"]["useremail"].value;
+		var y=document.forms["LoginPage"]["userpassword"].value;
+		var txt = "";
+		var valid = true;
+		if (validateEmail(x))
+		{
+			txt += "Email is valid\n";
+		}
+		else
+		{
+			txt += "Email not valid\n";
+			valid = false;
+		}
+		
+		if(CheckPassword(y))
+		{
+			txt += "Password is okay\n";
+		}
+		else
+		{
+			txt += "Password is not okay\n";
+			valid = false;
+		}
+		
+		
+		alert(txt);
+		
+		//place holder for where to go next
+		if(valid)
+		{
+			alert("Login okay");
+		}
+		else
+		{
+			alert("Login not okay");
+		}
+		
+	}
+	
+	function validateEmail(email)
+	{
+		 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		 
+		 return re.test(email);
+	}
+	
+	function CheckPassword(inputtxt)   
+	{   
+		var passw=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;  
+		return passw.test(inputtxt);
+	}
+	</script>
+</head>
+<body>
+	<div class="container">
+	<img src="./css/user.png">
+		<form id="LoginPage" method="post" onsubmit="ValidateInfo();">
+			<div class="form-input">
+				<input type="text" name="email" id="useremail" placeholder="Enter University ID">
+			</div>
+			<div class="form-input">
+				<input type="password" name="pass" id="userpassword" placeholder="Enter Password">
+			</div>
+				<input type="submit" name="submit" value="LOGIN" class="btn-login"><br>
+				<a href="#">Forget password?</a>
+		</form>
+	</div>
+</body>
+</html>	
