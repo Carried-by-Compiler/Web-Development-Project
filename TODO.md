@@ -10,7 +10,14 @@
 - [ ] Confirm password mechanism
 
 ## Main User's Page
-- [ ] Task Stream
-* Organize tags for personalized task stream
-- [ ] Create task
-- [ ] Claim task
+* Task Stream
+- [ ] Display tasks onto task stream
+- [ ] Implement personalized task stream
+- [ ] Create html/css for task stream
+* Create task
+- [ ] Input tags to tasks
+- [ ] File uploading for task preview
+- [ ] Make task creation neater
+* Task Claiming
+- [ ] Email sending
+- [ ] Sending task to claimant
