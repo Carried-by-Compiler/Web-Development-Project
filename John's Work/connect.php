@@ -7,8 +7,10 @@ $username = "root";
 $pass = "";
 try {
     $dbh = new PDO("mysql:host=$servername;dbname=$dbname", $username, $pass);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $exception)  {
-    printf("Connection error: %s", $exception->getMessage());
+
+	header("Location: error.php?e=$exception->getMessage()");
 }
 
 

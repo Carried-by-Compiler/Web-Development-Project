@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
     `Password` varchar(255) NOT NULL,
     PRIMARY KEY (`User_ID`),
     UNIQUE KEY (`Email`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 /*
 Tasks table
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `Tasks` (
     PRIMARY KEY (`Task_ID`, `Owner`),
     /* A user's tasks should be deleted so that potential claimants cannot ask a non-existent user for their task */
     FOREIGN KEY (`Owner`) REFERENCES `Users`(`User_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 /*
 Tags table
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `Tags` (
 	`Tag_ID` int unsigned NOT NULL AUTO_INCREMENT,
 	`Title` varchar(20) NOT NULL,
 	PRIMARY KEY (`Tag_ID`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 /*
 Task_Tags table
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `Task_Tags` (
 	`Tag_ID` int unsigned NOT NULL,
 	FOREIGN KEY (`Task_ID`) REFERENCES `Tasks`(`Task_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (`Tag_ID`) REFERENCES `Tags`(`Tag_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 /*
 Deadlines table
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `Deadlines` (
 	`Sub_D` datetime NOT NULL,
 	PRIMARY KEY (`Task_ID`),
 	FOREIGN KEY (`Task_ID`) REFERENCES `Tasks`(`Task_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 /*
 Task_Status table
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `Task_Status` (
 	PRIMARY KEY (`Task_ID`),
 	FOREIGN KEY (`Task_ID`) REFERENCES `Tasks`(`Task_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (`Claimant`) REFERENCES `Users`(`User_ID`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 /*
 Banned_Users
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `Banned_Users` (
 	PRIMARY KEY(`Banned_User`),
 	FOREIGN KEY (`Banned_User`) REFERENCES `Users`(`User_ID`),
 	FOREIGN KEY (`Banner`) REFERENCES `Users`(`User_ID`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 /*
 Flagged_Tasks
@@ -97,4 +97,4 @@ CREATE TABLE IF NOT EXISTS `Flagged_Tasks` (
 	`Date_Flagged` datetime NOT NULL,
 	PRIMARY KEY(`Task_ID`, `Flagger`),
 	FOREIGN KEY(`Task_ID`) REFERENCES `Tasks`(`Task_ID`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
