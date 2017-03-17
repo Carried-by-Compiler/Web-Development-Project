@@ -1,0 +1,15 @@
+Landing Page
+
+- Secure registration/login mechanism
+  - View tutorial on moodle
+  - hashing password
+  - Stop users accessing internal webpages when not logged in
+- Validation
+- Confirm password
+
+Home Page
+
+- Create Task
+- Task Stream
+  - Fix tag organization for personalized task stream
+- Task Claiming
