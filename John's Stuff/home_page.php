@@ -53,7 +53,9 @@ if (!isset($_SESSION['user_id'])) {
 		<?php
 			require("/connect.php");
 
-			$result = $dbh->prepare("SELECT Task_ID, Title FROM Tasks WHERE Owner <> :id");
+			$result = $dbh->prepare("SELECT Task_ID, Title 
+									 FROM Tasks NATURAL JOIN Task_Status 
+									 WHERE Owner <> :id AND Status = 'PENDING_CLAIM';");
 			$result->bindParam(':id', $_SESSION['user_id']);
 			$result->execute();
 

@@ -67,7 +67,7 @@ Task_Status table
 CREATE TABLE IF NOT EXISTS `Task_Status` (
 	`Task_ID` int unsigned NOT NULL,
 	`Status` varchar(20) NOT NULL DEFAULT 'PENDING_CLAIM',
-	`Claimant` int unsigned NOT NULL, /* what happens when the user deletes their profile? */
+	`Claimant` int unsigned DEFAULT NULL, /* what happens when the user deletes their profile? */
 	`Rating` varchar(10) DEFAULT NULL,
 	PRIMARY KEY (`Task_ID`),
 	FOREIGN KEY (`Task_ID`) REFERENCES `Tasks`(`Task_ID`) ON DELETE CASCADE ON UPDATE CASCADE,

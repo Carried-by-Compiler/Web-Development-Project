@@ -34,6 +34,12 @@ if (!isset($_SESSION['user']) || !isset($_POST['submit'])) {
 	$deadlinesInput->bindParam(':s', $_POST['d_submission']);
 	$deadlinesInput->execute();
 
+	$query = "INSERT INTO Task_Status (Task_ID)
+		      VALUES (:i)";
+	$task_status = $dbh->prepare($query);
+	$task_status->bindParam(':i', $last);
+	$task_status->execute();
+
 	echo "<h1>Task Added Successfully</h1>";
 	echo "<a href='home_page.php'>Return to Home</a>";
 
