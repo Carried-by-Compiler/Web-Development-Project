@@ -60,7 +60,7 @@ if (!isset($_SESSION['user_id'])) {
 			$result->execute();
 
 			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-				echo "<a href='claim_task.php?task_id=".$row['Task_ID']."'>".$row['Title']."</a><br>";
+				echo "<a href='task_details.php?task_id=".$row['Task_ID']."'>".$row['Title']."</a><br>";
 			}
 
 			$dbh = null;

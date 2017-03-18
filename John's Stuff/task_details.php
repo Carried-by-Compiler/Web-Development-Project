@@ -35,6 +35,11 @@ if (!isset($_GET['task_id'])) {
 		</nav>
 		<h2>Description</h2>
 		<p> <?php echo $row['Description']; ?></p>
+		<h2>Deadlines</h2>
+		<h3>Task Stream Expiry Date</h3>
+		<p> <?php echo $row['Claim_D'];  ?></p>
+		<h3>Submission Expiry Date</h3>
+		<p><?php echo $row['Sub_D'];  ?></p>
 		<h2>Other Info</h2>
 		<ul>
 			<li>Type: <?php echo $row['Type'];  ?></li>
