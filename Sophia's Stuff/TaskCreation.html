@@ -1,0 +1,92 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Task Creation</title>
+		<link rel="stylesheet" type="text/css" href="nava.css">
+		<script type="text/javascript">
+				function active(){
+					var searchBar = document.getElementById('searchBar');
+					
+					if(searchBar.value == 'Search...'){
+						searchBar.value = ''
+						searchBar.placeholder = 'Search...'
+					}
+				}
+				function inactive(){
+					var searchBar = document.getElementById('searchBar');
+					
+					if(searchBar.value == ''){
+						searchBar.value = 'Search...'
+						searchBar.placeholder = ''
+					}
+				}
+		</script>
+	</head>
+		<body>
+		<div id="Maindiv">
+				<div id="navdiv">
+					<form action="search.php" method="post">
+						<input type="text" id="searchBar" placeholder="" value="Search..." maxlength="30" autocomplete="off" onmousedown="active();" onblur="inactive();"/><input type="submit" id="searchBtn" value="Go!" />
+					</form>
+					<ul>
+						<h1>My WebPage</h1>
+						<li><a href="home_page.php">Home</a></li>
+						<li><a href="my_task.php">View My Tasks</a></li>
+						<li><a href="#">LINK3</a></li>
+						<li><a href="#">LINK4</a></li>
+						<li><a href="#">LINK5</a></li>
+						<li><a href="#">LINK6</a></li>
+					</ul>
+				</div>
+			</div>
+			<form action="/project/store_task.php" method="post">
+				<div class="container">
+					<div class="form-input">
+						<input type="text" name="title" placeholder="Title" required>
+					</div>
+					<div class="form-input">
+						<input type="text" name="paper" placeholder="Type of Paper">
+							<select name="type">
+								<option value="Dissertation">Dissertation</option>
+								<option value="Thesis">Thesis</option>
+								<option value="Research Paper">Research Paper</option>
+							</select>
+					</div>
+					<div class="form-input">
+						<input type="text" name="desc" placeholder="Desctiption of the task:">
+							<textarea name="desc" rows="10" cols="30"></textarea>
+					</div>
+					<div class="form-input">
+						<input type="text" name="format" placeholder="Format of Doctument: ">
+							<select name="format">
+								<option value="PDF">PDF</option>
+								<option value="DOC">DOC</option>
+								<option value="DOCX">DOCX</option>
+							</select>
+					</div>
+					<div class="form-input">
+						<input type="text" name="words" placeholder="Number of Words:">
+							<input type="number" name="words" min="1">
+					</div>
+					<div class="form-input">
+						<input type="text" name="pages" placeholder="Number of Pages:">
+							<input type="number" name="pages" min="1">
+					</div>
+					<div class="form-input">
+						<input type="text" name="stream" placeholder="Deadline for Task Stream:">
+							<input type="date" name="d_stream" required>
+					</div>
+					<div class="form-input">
+						<input type="text" name="date" placeholder="Deadline for Task Submission:">
+							<input type="date" name="d_submission" required>
+					</div>
+						<input type="submit" name="submit" value="SUBMIT" class="btn-login"><br>
+			</form>	
+			</div>
+		</form>
+	</body>
+</html>
