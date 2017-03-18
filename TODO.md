@@ -21,3 +21,5 @@
 * Task Claiming
 - [ ] Email sending
 - [ ] Sending task to claimant
+* `My Tasks` Page
+- [ ] Write code for displaying a list of tasks you published.
