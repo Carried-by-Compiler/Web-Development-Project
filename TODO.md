@@ -11,7 +11,7 @@
 
 ## Main User's Page
 * Task Stream
-- [ ] Display tasks onto task stream
+- [X] ~~Display tasks onto task stream~~
 - [ ] Implement personalized task stream
 - [ ] Create html/css for task stream
 * Create task
