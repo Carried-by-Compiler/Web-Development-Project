@@ -1,5 +1,12 @@
 # To-Do List of Work
 
+## Code Organization
+- [ ] Try to organize project
+*** look up MVC (Model-View-Controller) architecture
+
+## Database
+- [ ] **Claimant Reviews when completing a task**
+
 ## Landing Page
 
 ### Make login/registration more secure <br>
@@ -20,6 +27,7 @@
 - [ ] Display + download task preview
 - [ ] Make task creation neater (Sophia's HTML/CSS)
 ### Task Claiming
+- [X] ~~Code for basic claiming~~
 - [ ] Email sending
 - [ ] Sending task to claimant
 ### "My Tasks" Page

@@ -54,7 +54,7 @@ class User
 	}
 
 	public function setPoints($p){
-		require("../connect.php");
+		require("/connect.php");
 		$query = "UPDATE Users
 				  SET Rep_Points = Rep_Points + $p
 				  WHERE User_ID = $this->id";

@@ -19,13 +19,22 @@ if (!isset($_SESSION['user_id'])) {
 
 		.profile_details {
 			float: left;
-			width: 500px;
+			width: 450px;
+			height: 250px;
+		}
+
+		.claimed_tasks {
+			width: 300px;
+			height: 250px;
+			float: left;
+			margin-left: 120px;
+			overflow-y: auto;
 		}
 
 		.task_stream {
 			float: right;
-			width: 350px;
-			height: 300px;
+			width: 300px;
+			height: 250px;
 			overflow-y: auto;
 		}
 	</style>
@@ -35,8 +44,7 @@ if (!isset($_SESSION['user_id'])) {
 	<nav>
 		<a href="logout.php">LogOut</a> |
 		<a href="task_creation.php">Create a task</a> |
-		<a href="my_tasks.php">View My Tasks</a> |
-		<a href="my_claims.php">View Claimed Tasks</a>
+		<a href="my_tasks.php">View My Tasks</a>
 	</nav>
 
 	<div class="profile_details">
@@ -48,6 +56,29 @@ if (!isset($_SESSION['user_id'])) {
 		<p><?php echo $_SESSION['user']->getPoints(); ?></p>
 	</div>
 	
+	<div class="claimed_tasks">
+		<h2>Claimed Tasks</h2>
+		<?php
+			require("/connect.php");
+
+			$result = $dbh->prepare("SELECT t.Task_ID, t.Title, DATEDIFF(dead.Sub_D, NOW()) as DIFF
+									 FROM (Tasks t JOIN Task_Status s ON t.Task_ID = s.Task_ID)
+									      JOIN Deadlines dead ON t.Task_ID = dead.Task_ID
+									 WHERE (Claimant = :id AND Status = 'CLAIMED') AND dead.Sub_D > NOW()
+									 ORDER BY dead.Sub_D;");
+			$result->bindParam(':id', $_SESSION['user_id']);
+			$result->execute();
+
+			echo "<hr>";
+			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+				echo "<p><a href='task_details.php?task_id=".$row['Task_ID']."&claimed=1'>".$row['Title']."</a>: ".$row['DIFF']." days left!</p>";
+				echo "<hr>";
+			}
+
+			$dbh = null;
+
+		?>
+	</div>
 
 	<div class="task_stream">
 		<h2>Tasks To Claim</h2>
@@ -60,13 +91,17 @@ if (!isset($_SESSION['user_id'])) {
 			$result->bindParam(':id', $_SESSION['user_id']);
 			$result->execute();
 
+			echo "<hr>";
 			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 				echo "<a href='task_details.php?task_id=".$row['Task_ID']."&claim=1'>".$row['Title']."</a><br>";
+				echo "<hr>";
 			}
 
 			$dbh = null;
 
 		?>
 	</div>
+
+	
 </body>
 </html>

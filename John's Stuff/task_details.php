@@ -30,8 +30,8 @@ if (!isset($_GET['task_id'])) {
 	<body>
 		<h1><?php echo $row['Title']; ?></h1>
 		<nav>
-			<a href="logout.php">LogOut</a> |
-			<a href="home_page.php">Home</a>
+			<a href="home_page.php">Home</a> |
+			<a href="task_creation.php">Create a task</a>
 		</nav>
 		<h2>Description</h2>
 		<p> <?php echo $row['Description']; ?></p>
@@ -47,8 +47,21 @@ if (!isset($_GET['task_id'])) {
 			<li>Words: <?php echo $row['Pages'];  ?></li>
 			<li>Date created (YYYY-MM-DD TIME): <?php echo $row['Date_Created'];  ?></li>
 		</ul>
-		<form action="claim_task.php" method="POST">
-			<input type="submit" name="claim" value="Claim Task">
-		</form>
+
+		<?php  if (isset($_GET['claim'])): ?>
+			<form action="claim_task.php" method="POST">
+				<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
+				<input type="submit" name="claim" value="Claim Task">
+			</form>
+		<?php  elseif(isset($_GET['claimed'])): ?>
+
+			<!--IMPLEMENT THESE! IMPORTANT-->
+			<form action="" method="POST">
+				<input type="submit" name="request" value="Request for Document">
+			</form>
+			<form action="" method="POST">
+				<input type="submit" name="complete" value="Mark as Complete">
+			</form>
+		<?php endif; ?>
 	</body>
 </html>
