@@ -36,4 +36,7 @@
 - [ ] Add details of task claimant (When a task is claimed)
 - [ ] Make it easier for owner to find a specific task.
 ### Deadlines
-- [ ] Make website check deadlines of tasks
+- [X] ~~Make website check deadlines of tasks~~
+- [ ] FIX problem where if you you refresh the page in task_details.php (when task is expired), you deduct 30 points AGAIN!
+- [ ] Write code for when user completes task
+- [ ] Write code for when a task in the stream has expired.

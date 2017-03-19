@@ -18,7 +18,17 @@ if (!isset($_SESSION['user'])) {
 <html>
 <head>
 	<title>My Tasks</title>
-	
+	<style>
+		.task_detail {
+			position: relative;
+		}
+
+		.task_detail .claimant_detail {
+			position: absolute;
+			right: 50px;
+			top: 0;
+		}
+	</style>
 </head>
 <body>
 	<h1>My Tasks</h1>
@@ -50,20 +60,30 @@ if (!isset($_SESSION['user'])) {
 				</ul>
 				<h3><u>Task Status</u></h3>
 				<p><em><?php  echo $row['Status']; ?></em></p>
-				<?php if ($row['Status'] = "PENDING_CLAIM") : ?>
+				<?php if ($row['Status'] == "PENDING_CLAIM") : ?>
 					<form action="delete_task.php" method="POST">
 						<input type="hidden" name="t_id" value="<?php  echo $row['Task_ID']; ?>">
 						<input type="submit" name="delete" value="Delete Task">
 					</form>
 				<?php endif; ?>
-
+				
+				<?php if ($row['Status'] == 'CLAIMED'): ?>
+					<?php  
+					$result = $dbh->prepare("SELECT * FROM Users WHERE User_ID = ".$row['Claimant']);
+					$result->execute();
+					$user_row = $result->fetch(PDO::FETCH_ASSOC);
+					?>
+					<div class="claimant_detail">
+						<h2>Claimant's Details</h2>
+						<h3>Firstname</h3>
+						<p><?php echo $user_row['FirstName'] ?></p>
+						<h3>Lastname</h3>
+						<p><?php echo $user_row['LastName'] ?></p>
+						<h3>E-mail Address</h3>
+						<p><?php echo $user_row['Email'] ?></p>
+					</div>
+				<?php endif; ?>
 			</div>
-
-			<div class="claimant_detail">
-				<h1>CHICKEN!</h1>
-			</div>
-
-			
 		</div>
 		<hr>
 

@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
     `LastName` varchar(128) NOT NULL,
     `Email` varchar(128) NOT NULL,
     `Subject` varchar(126) NOT NULL,
-    `Rep_Points` int unsigned DEFAULT '0',
+    `Rep_Points` int DEFAULT '0',
     `Password` varchar(255) NOT NULL,
     PRIMARY KEY (`User_ID`),
     UNIQUE KEY (`Email`)

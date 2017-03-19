@@ -1,5 +1,6 @@
 <?php
 
+require("/models/User.class.php");
 session_start();
 
 require("/connect.php");
@@ -9,6 +10,16 @@ if (!isset($_GET['task_id'])) {
 
 	$task_id = $_GET['task_id'];
 
+	if (isset($_GET['expired']) && $_GET['expired'] == 1) {
+		
+		$result = $dbh->prepare("UPDATE Task_Status SET Status = 'FAILED' WHERE Task_ID = :id");
+		$result->bindParam(':id', $task_id);
+		$result->execute();
+		$_SESSION['user']->setPoints(-30);
+		echo "<h1>FAILED TO SUBMIT TASK</h1>";
+		echo "<p>You have lost 30 reputation points for failing to submit your task</p>";
+	}
+
 	$result = $dbh->prepare("SELECT * FROM Tasks NATURAL JOIN Deadlines WHERE Tasks.Task_ID = :id");
 	$result->bindParam(':id', $task_id);
 	$result->execute();
@@ -16,8 +27,12 @@ if (!isset($_GET['task_id'])) {
 	$row = $result->fetch(PDO::FETCH_ASSOC);
 
 
-	$result = null;
+	$result = $dbh->prepare("SELECT Status FROM Task_Status WHERE Task_ID = :id");
+	$result->bindParam(':id', $task_id);
+	$result->execute();
+	$status_row = $result->fetch(PDO::FETCH_ASSOC);
 
+	$dbh = null;
 }
 
 
@@ -46,6 +61,7 @@ if (!isset($_GET['task_id'])) {
 			<li>Words: <?php echo $row['Words'];  ?></li>
 			<li>Words: <?php echo $row['Pages'];  ?></li>
 			<li>Date created (YYYY-MM-DD TIME): <?php echo $row['Date_Created'];  ?></li>
+			<li>Task Status: <?php  echo $status_row['Status']; ?>
 		</ul>
 
 		<?php  if (isset($_GET['claim'])): ?>
@@ -56,12 +72,17 @@ if (!isset($_GET['task_id'])) {
 		<?php  elseif(isset($_GET['claimed'])): ?>
 
 			<!--IMPLEMENT THESE! IMPORTANT-->
-			<form action="" method="POST">
-				<input type="submit" name="request" value="Request for Document">
-			</form>
-			<form action="" method="POST">
-				<input type="submit" name="complete" value="Mark as Complete">
-			</form>
+			<?php if ($_GET['expired'] == 0) : ?>
+				<form action="" method="POST">
+					<input type="submit" name="request" value="Request for Document">
+				</form>
+				<form action="" method="POST">
+					<input type="submit" name="complete" value="Mark as Complete">
+				</form>
+			<?php else: ?>
+				
+				
+			<?php endif; ?>
 		<?php endif; ?>
 	</body>
 </html>

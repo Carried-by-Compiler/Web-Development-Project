@@ -8,6 +8,8 @@ if (!isset($_SESSION['user_id'])) {
 	require("./models/User.class.php");
 	$user = new User($_SESSION['user_id']);
 	$_SESSION['user'] = $user;
+
+	// Check if there are any tasks that you have claimed that are expired
 }
 
 ?>
@@ -61,18 +63,34 @@ if (!isset($_SESSION['user_id'])) {
 		<?php
 			require("/connect.php");
 
+			/* 
+			Get the title and task id of each task 
+			where the task has been claimed by you,
+			while at the same time, the task deadline has not expired.
+			*/
+
 			$result = $dbh->prepare("SELECT t.Task_ID, t.Title, DATEDIFF(dead.Sub_D, NOW()) as DIFF
 									 FROM (Tasks t JOIN Task_Status s ON t.Task_ID = s.Task_ID)
 									      JOIN Deadlines dead ON t.Task_ID = dead.Task_ID
-									 WHERE (Claimant = :id AND Status = 'CLAIMED') AND dead.Sub_D > NOW()
+									 WHERE (Claimant = :id AND Status = 'CLAIMED') AND dead.Sub_D >= CURDATE()
 									 ORDER BY dead.Sub_D;");
 			$result->bindParam(':id', $_SESSION['user_id']);
 			$result->execute();
 
 			echo "<hr>";
 			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-				echo "<p><a href='task_details.php?task_id=".$row['Task_ID']."&claimed=1'>".$row['Title']."</a>: ".$row['DIFF']." days left!</p>";
-				echo "<hr>";
+
+				// TEST
+				// If there is a task that has been expired for submission
+				// change its status and deduct 30 rep points
+				if ($row['DIFF'] > 0) {
+					echo "<p><a href='task_details.php?task_id=".$row['Task_ID']."&claimed=1&expired=0'>".$row['Title']."</a>: ".$row['DIFF']." days left!</p>";
+					echo "<hr>";
+				} else {
+					echo "<p><a href='task_details.php?task_id=".$row['Task_ID']."&claimed=1&expired=1'>".$row['Title']."</a>: ".$row['DIFF']." days left!</p>";
+					echo "<hr>";
+				}
+				
 			}
 
 			$dbh = null;
@@ -84,16 +102,21 @@ if (!isset($_SESSION['user_id'])) {
 		<h2>Tasks To Claim</h2>
 		<?php
 			require("/connect.php");
-
-			$result = $dbh->prepare("SELECT Task_ID, Title 
-									 FROM Tasks NATURAL JOIN Task_Status 
-									 WHERE Owner <> :id AND Status = 'PENDING_CLAIM';");
+			/*
+			Get the task id and task title of each task
+			where the task does not belong to you and is available to be claimed.
+			The deadline for claiming that task should not have been reached.
+			*/
+			$result = $dbh->prepare("SELECT Tasks.Task_ID, Tasks.Title, DATEDIFF(Claim_D, NOW()) as DIFF
+									 FROM (Tasks JOIN Task_Status ON Tasks.Task_ID = Task_Status.Task_ID)
+									 	JOIN Deadlines ON Tasks.Task_ID = Deadlines.Task_ID
+									 WHERE (Owner <> :id AND Status = 'PENDING_CLAIM') AND Claim_D > CURDATE();");
 			$result->bindParam(':id', $_SESSION['user_id']);
 			$result->execute();
 
 			echo "<hr>";
 			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-				echo "<a href='task_details.php?task_id=".$row['Task_ID']."&claim=1'>".$row['Title']."</a><br>";
+				echo "<p><a href='task_details.php?task_id=".$row['Task_ID']."&claim=1'>".$row['Title']."</a>: ".$row['DIFF']." days left to claim!</p>";
 				echo "<hr>";
 			}
 
