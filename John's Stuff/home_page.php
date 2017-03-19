@@ -35,7 +35,8 @@ if (!isset($_SESSION['user_id'])) {
 	<nav>
 		<a href="logout.php">LogOut</a> |
 		<a href="task_creation.php">Create a task</a> |
-		<a href="my_task.php">View My Tasks</a>
+		<a href="my_tasks.php">View My Tasks</a> |
+		<a href="my_claims.php">View Claimed Tasks</a>
 	</nav>
 
 	<div class="profile_details">
@@ -60,7 +61,7 @@ if (!isset($_SESSION['user_id'])) {
 			$result->execute();
 
 			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-				echo "<a href='task_details.php?task_id=".$row['Task_ID']."'>".$row['Title']."</a><br>";
+				echo "<a href='task_details.php?task_id=".$row['Task_ID']."&claim=1'>".$row['Title']."</a><br>";
 			}
 
 			$dbh = null;

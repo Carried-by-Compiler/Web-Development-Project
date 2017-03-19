@@ -23,5 +23,9 @@
 - [ ] Email sending
 - [ ] Sending task to claimant
 ### "My Tasks" Page
-- [ ] Write code for displaying a list of tasks you published.
-- [ ] Display DATETIME's as dates only.
+- [X] ~~Write code for displaying a list of tasks you published.~~
+- [X] ~~Have delete task button (Actually deletes a task)~~
+- [ ] Add details of task claimant (When a task is claimed)
+- [ ] Make it easier for owner to find a specific task.
+### Deadlines
+- [ ] Make website check deadlines of tasks

@@ -47,5 +47,8 @@ if (!isset($_GET['task_id'])) {
 			<li>Words: <?php echo $row['Pages'];  ?></li>
 			<li>Date created (YYYY-MM-DD TIME): <?php echo $row['Date_Created'];  ?></li>
 		</ul>
+		<form action="claim_task.php" method="POST">
+			<input type="submit" name="claim" value="Claim Task">
+		</form>
 	</body>
 </html>
