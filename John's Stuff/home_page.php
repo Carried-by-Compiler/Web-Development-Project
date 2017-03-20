@@ -80,7 +80,6 @@ if (!isset($_SESSION['user_id'])) {
 			echo "<hr>";
 			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
-				// TEST
 				// If there is a task that has been expired for submission
 				// change its status and deduct 30 rep points
 				if ($row['DIFF'] > 0) {
@@ -110,7 +109,7 @@ if (!isset($_SESSION['user_id'])) {
 			$result = $dbh->prepare("SELECT Tasks.Task_ID, Tasks.Title, DATEDIFF(Claim_D, NOW()) as DIFF
 									 FROM (Tasks JOIN Task_Status ON Tasks.Task_ID = Task_Status.Task_ID)
 									 	JOIN Deadlines ON Tasks.Task_ID = Deadlines.Task_ID
-									 WHERE (Owner <> :id AND Status = 'PENDING_CLAIM') AND Claim_D > CURDATE();");
+									 WHERE (Owner <> :id AND Status = 'PENDING_CLAIM') AND Claim_D >= CURDATE();");
 			$result->bindParam(':id', $_SESSION['user_id']);
 			$result->execute();
 

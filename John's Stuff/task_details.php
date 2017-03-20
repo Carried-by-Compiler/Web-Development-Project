@@ -76,8 +76,13 @@ if (!isset($_GET['task_id'])) {
 				<form action="" method="POST">
 					<input type="submit" name="request" value="Request for Document">
 				</form>
-				<form action="" method="POST">
+				<form action="complete_task.php" method="POST">
+					<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
 					<input type="submit" name="complete" value="Mark as Complete">
+				</form>
+				<form action="cancel_task.php" method="POST">
+					<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
+					<input type="submit" name="cancel" value="Cancel task">
 				</form>
 			<?php else: ?>
 				

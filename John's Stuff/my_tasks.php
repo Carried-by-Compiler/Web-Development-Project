@@ -67,7 +67,8 @@ if (!isset($_SESSION['user'])) {
 					</form>
 				<?php endif; ?>
 				
-				<?php if ($row['Status'] == 'CLAIMED'): ?>
+				<?php if ($row['Status'] == 'CLAIMED' || $row['Status'] == 'FAILED' || $row['Status'] == 'COMPLETE'||
+							$row['Status'] == 'CANCELLED'): ?>
 					<?php  
 					$result = $dbh->prepare("SELECT * FROM Users WHERE User_ID = ".$row['Claimant']);
 					$result->execute();
