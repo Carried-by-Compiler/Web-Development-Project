@@ -13,7 +13,7 @@ session_start();
 <body>
 	<h1>Create a Task</h1>
 	<nav>
-		<a href="home_page.php">Home</a> |
+		<a href="HomePage.php">Home</a> |
 		<a href="my_task.php">View My Tasks</a>
 	</nav>
 	<br>

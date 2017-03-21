@@ -2,7 +2,7 @@
 
 if(!isset($_POST['id'])) {
 
-	header("Location: index.html");
+	header("Location: index.php");
 
 } else {
 	
@@ -29,7 +29,7 @@ if(!isset($_POST['id'])) {
             $result->execute();
 
             echo "<h1>Added successfully</h1>";
-			echo "<a href='login.html'>Click here to Login</a>";
+			echo "<a href='login.php'>Click here to Login</a>";
 
     	} catch (PDOException $exception) {
             echo "Error: " . $exception->getMessage();

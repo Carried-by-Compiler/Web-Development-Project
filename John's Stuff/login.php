@@ -1,3 +1,12 @@
+<?php
+require("/connect.php");
+$result = $dbh->prepare("UPDATE Task_Status ts
+						 INNER JOIN Deadlines ON ts.Task_ID = Deadlines.Task_ID 
+						 SET ts.Status = 'UNCLAIMED'
+						 WHERE Deadlines.Claim_D <= CURDATE() AND Status = 'PENDING_CLAIM'");
+$result->execute();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="/project/css/login.css">
 </head>
 <body>
-	<form action="index.html"><input type="submit" value="Register"/></form>
+	<form action="index.php"><input type="submit" value="Register"/></form>
 	<div class="container">
 	<img src="./css/user.png">
 		<form method="post" action="login_user.php">

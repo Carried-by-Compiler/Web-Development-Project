@@ -7,7 +7,7 @@ if (isset($_POST['id']) && isset($_POST['pass'])) {
 		  
 		session_start();
 		$_SESSION['user_id'] = $_POST['id'];
-		header("Location: home_page.php");
+		header("Location: HomePage.php");
 		
 		
 	} else {

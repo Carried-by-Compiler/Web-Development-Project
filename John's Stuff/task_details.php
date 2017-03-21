@@ -45,7 +45,7 @@ if (!isset($_GET['task_id'])) {
 	<body>
 		<h1><?php echo $row['Title']; ?></h1>
 		<nav>
-			<a href="home_page.php">Home</a> |
+			<a href="HomePage.php">Home</a> |
 			<a href="task_creation.php">Create a task</a>
 		</nav>
 		<h2>Description</h2>

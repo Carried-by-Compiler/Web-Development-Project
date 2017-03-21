@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-	header("Location: index.html");
+	header("Location: index.php");
 } else {
 	require("./models/User.class.php");
 	$user = new User($_SESSION['user_id']);

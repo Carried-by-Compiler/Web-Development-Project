@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['user'])) {
-	header("Location: index.html");
+	header("Location: index.php");
 } else {
 	require("/connect.php");
 	$task_info = $dbh->prepare("SELECT * 
@@ -33,7 +33,7 @@ if (!isset($_SESSION['user'])) {
 <body>
 	<h1>My Tasks</h1>
 	<nav>
-		<a href="home_page.php">Home</a> |
+		<a href="HomePage.php">Home</a> |
 		<a href="task_creation.php">Create a task</a>
 	</nav>
 
@@ -65,6 +65,20 @@ if (!isset($_SESSION['user'])) {
 						<input type="hidden" name="t_id" value="<?php  echo $row['Task_ID']; ?>">
 						<input type="submit" name="delete" value="Delete Task">
 					</form>
+
+				<?php elseif ($row['Status'] == "UNCLAIMED") : ?>
+
+					<?php $_SESSION['t_id'] = $row['Task_ID']; ?>
+
+					<form action="delete_task.php" method="POST">
+						<input type="hidden" name="t_id" value="<?php  echo $row['Task_ID']; ?>">
+						<input type="submit" name="delete" value="Delete Task">
+					</form>
+					<form action="republish_task.php" method="POST">
+						<input type="hidden" name="t_id" value="<?php  echo $row['Task_ID']; ?>">
+						<input type="submit" name="republish" value="Republish Task">
+					</form>
+
 				<?php endif; ?>
 				
 				<?php if ($row['Status'] == 'CLAIMED' || $row['Status'] == 'FAILED' || $row['Status'] == 'COMPLETE'||

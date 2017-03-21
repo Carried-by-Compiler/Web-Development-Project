@@ -3,6 +3,7 @@
 ## Code Organization
 - [ ] Try to organize project
 *** look up MVC (Model-View-Controller) architecture
+- [ ] Use Session variables to manipulate tasks (Passing task id around site)
 
 ## Database
 - [ ] **Claimant Reviews when completing a task**
@@ -41,4 +42,4 @@
 - [ ] FIX problem where if you you refresh the page in task_details.php (when task is expired), you deduct 30 points AGAIN!
 - [X] ~~Write code for when user completes task~~
 - [X] ~~Write code for when user cancels a task~~
-- [ ] Write code for when a task in the stream has expired.
+- [X] ~~Write code for when a task in the stream has expired.~~
