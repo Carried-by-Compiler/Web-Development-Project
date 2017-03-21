@@ -105,8 +105,6 @@ $result->execute();
 			{
 				alert("Register bad");
 			}
-			alert(valid);
-			return valid;
 		}
 		
 		function validateName(name)
@@ -133,7 +131,7 @@ $result->execute();
 	<div class="container">
 		<img src="./css/user.png">
 		
-		<form id='Register' action="insert_user.php" method="post" onsubmit="return validateInput();">
+		<form id='Register' action="insert_user.php" method="post" onsubmit="validateInput();">
 			<div class="form-input">
 				<input type="text" name="id" placeholder="Enter University ID" required>
 			</div>
