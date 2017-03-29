@@ -3,7 +3,7 @@
 session_start();
 if (!isset($_SESSION['user']) || !isset($_POST['submit'])) {
 
-	header("Location: index.php");
+	header("Location: index.html");
 
 } else {
 
@@ -41,7 +41,7 @@ if (!isset($_SESSION['user']) || !isset($_POST['submit'])) {
 	$task_status->execute();
 
 	echo "<h1>Task Added Successfully</h1>";
-	echo "<a href='HomePage.php'>Return to Home</a>";
+	echo "<a href='home_page.php'>Return to Home</a>";
 
 	$dbh = null;
 

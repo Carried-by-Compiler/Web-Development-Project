@@ -9,7 +9,7 @@ if (!isset($_POST['delete'])) {
 	$dbh = null;
 
 	echo "<h1>Deletion successful</h1>";
-	echo "<a href='HomePage.php'>Home</a>";
+	echo "<a href='home_page.php'>Home</a>";
 }
 
 ?>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="sofstyle.css">
+	
+	<script type="text/JavaScript">
+	function validateInput()
+	{
+		var x=document.forms["Register"]["f_name"].value;
+		var y=document.forms["Register"]["s_name"].value;
+		var z=document.forms["Register"]["userEmail"].value;
+		var a=document.forms["Register"]["userpassword"].value;
+		var b=document.forms["Register"]["conpass"].value;
+		var txt = "";
+		var valid = true;
+		//boolean allValid = true;
+		
+		if(validateName(x))
+		{
+			txt += "FN Valid\n";
+		}
+		else
+		{
+			txt += "FN Not valid\n";
+			valid = false;
+		}
+		
+		if(validateName(y))
+		{
+			txt += "SN Valid\n"
+		}
+		else
+		{
+			txt += "SN Not valid\n"
+			valid = false;
+		}
+		
+		if(z == "")
+		{
+			txt = "Please enter an email\n";
+			valid = false;
+		}
+		else if(validateEmail(z))
+		{
+			txt += "Email Valid\n"
+		}
+		else
+		{
+			txt += "Email not valid\n"
+			valid = false;
+		}
+		
+		var passValid = false;
+		if(a == "")
+		{
+			txt += "Please enter a password\n";
+			valid = false;
+		}
+		else if(validatePassword(a))
+		{
+			txt += "Password is okay\n";
+			passValid = true;
+			
+		}
+		else
+		{
+			txt += "Password is invalid\n";
+			valid = false;
+		}
+		
+		if(passValid)
+		{
+			if(b == a)
+			{
+				txt += "Confirm pass okay\n";
+			}
+			else
+			{
+				txt += "Confirm pass not the same as password\n";
+				valid = false;
+			}
+		}
+		
+		alert(txt);
+	
+		
+		
+		//This would be removed and redirect to main page if valid if not will remain on the same page
+		if(valid)
+		{
+			alert("Register is okay");
+		}
+		else
+		{
+			alert("Register bad");
+		}
+		alert();
+	}
+	
+	function validateName(name)
+	{
+		var alpha = /^[a-zA-Z]+$/;
+		return alpha.test(name);
+	}
+	
+	function validateEmail(z)
+	{
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(z);
+	}
+	
+	function validatePassword(pass)   
+	{   
+		var passw=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;  
+		return passw.test(pass);
+	}
+	</script>
+
+</head>
+<body>
+	<div class="container">
+	<img src="user.png">
+		<form id="Register" method="post" onsubmit="validateInput();">
+			<div class="form-input">
+				<input id="Fname" type="text" placeholder="Enter Firstname">
+				<input id="Sname" type="text" placeholder="Enter Lastname">
+			</div>
+			<div class="form-input">
+				<input id="userEmail" type="text" name="username" placeholder="Enter Student/Lecturer Email">
+			</div>
+			<div class="form-input">
+				<input id="userpassword" type="password" name="password" placeholder="Enter Password">
+			</div>
+			<div class="form-input">
+				<input id="conpass" type="password" name="password" placeholder="Confirm Password">
+			</div>
+			<div class="form-input">
+				<li class="dropdown"><a href="#" class="dropdown-btn">Subject</a>
+					<div class="dropdown-menu">
+						<select name="subject">
+						<option value"1">Computer Science</option>
+						<option value"2">Engineering</option>
+						<option value"3">Mathematics</option>
+						</select>	
+					</div>
+			</div>
+				<input type="submit" name="submit" value="REGISTER" class="btn-login"><br>
+		</form>
+	</div>
+</body>
+</html>	
