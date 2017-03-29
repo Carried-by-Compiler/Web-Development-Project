@@ -11,7 +11,7 @@ $result->execute();
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="/project/css/login.css">
+	<link rel="stylesheet" type="text/css" href="./css/login.css">
 	<script type="text/JavaScript">
 		function validateInfo()
 		{

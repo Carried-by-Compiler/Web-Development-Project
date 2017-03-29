@@ -1,10 +1,10 @@
 <?php
 
 
-$servername = "localhost";
-$dbname = "web project";
-$username = "root";
-$pass = "";
+$servername = "testweb3";
+$dbname = "group4";
+$username = "group4";
+$pass = "various-also-material-ears";
 try {
     $dbh = new PDO("mysql:host=$servername;dbname=$dbname", $username, $pass);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
