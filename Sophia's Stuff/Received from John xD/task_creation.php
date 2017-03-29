@@ -13,11 +13,11 @@ session_start();
 <body>
 	<h1>Create a Task</h1>
 	<nav>
-		<a href="home_page.php">Home</a> |
+		<a href="HomePage.php">Home</a> |
 		<a href="my_task.php">View My Tasks</a>
 	</nav>
 	<br>
-	<form action="/project/store_task.php" method="post">
+	<form action="store_task.php" method="post">
 		Title:<br>
 		<input type="text" name="title" required><br>
 		<br>Type of paper:<br>
