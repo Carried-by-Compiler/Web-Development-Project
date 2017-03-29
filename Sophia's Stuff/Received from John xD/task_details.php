@@ -61,7 +61,8 @@ if (!isset($_GET['task_id'])) {
 			<li>Words: <?php echo $row['Words'];  ?></li>
 			<li>Words: <?php echo $row['Pages'];  ?></li>
 			<li>Date created (YYYY-MM-DD TIME): <?php echo $row['Date_Created'];  ?></li>
-			<li>Task Status: <?php  echo $status_row['Status']; ?>
+			<li>Task Status: <?php  echo $status_row['Status']; ?></li>
+			<li><a href="download_file.php?file=<?php echo $task_id; ?>.<?php echo $row['Format']; ?>">Download document preview</a></li>
 		</ul>
 
 		<?php  if (isset($_GET['claim'])): ?>

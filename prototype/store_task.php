@@ -50,7 +50,32 @@ if (!isset($_SESSION['user']) || !isset($_POST['submit'])) {
 	}
 	
 
-	
+	//define ("FILEREPOSITORY","C:/wamp64/www/pro/test/uploaded_files"); //Set a constant
+	define ('SITE_ROOT', realpath(dirname(__FILE__)));
+    
+    
+    if (is_uploaded_file($_FILES['classnotes']['tmp_name'])) { //file posted?
+
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mime = finfo_file($finfo, $_FILES['classnotes']['tmp_name']);
+
+        if ($mime != "application/pdf" &&
+            $mime != "application/vnd.openxmlformats-officedocument.wordprocessingml.document" &&
+            $mime != "application/msword") { 
+            echo "<p>Class notes must be uploaded in PDF/DOCX/DOC format.</p>"; 
+        
+        } else { /* move uploaded file to final destination. */
+            
+            $name = $last;
+            $result = move_uploaded_file($_FILES['classnotes']['tmp_name'],  SITE_ROOT."\\uploaded_files\\$name.".$_POST['format']);
+            
+            if ($result == 1) {
+                echo "<p>File successfully uploaded.</p>";
+            } else {
+                echo "<p>There was a problem uploading the file.</p>";
+            }
+        } //endIF
+    } //endI
 
 	
 

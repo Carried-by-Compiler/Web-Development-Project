@@ -17,7 +17,7 @@ session_start();
 		<a href="my_task.php">View My Tasks</a>
 	</nav>
 	<br>
-	<form action="store_task.php" method="post">
+	<form action="store_task.php" method="post" enctype="multipart/form-data">
 		Title:<br>
 		<input type="text" name="title" required><br>
 		<br>Type of paper:<br>
@@ -30,9 +30,9 @@ session_start();
 		<textarea name="desc" rows="10" cols="30"></textarea>
 		<br>Format of document:<br>
 		<select name="format">
-			<option value="PDF">PDF</option>
-			<option value="DOC">DOC</option>
-			<option value="DOCX">DOCX</option>
+			<option value="pdf">PDF</option>
+			<option value="doc">DOC</option>
+			<option value="docx">DOCX</option>
 		</select>
 		<br>Number of words:<br>
 		<input type="number" name="words" min="1"><br>
@@ -42,7 +42,10 @@ session_start();
 		<input type="date" name="d_stream" required><br>
 		<br>Deadline for task submission:<br>
 		<input type="date" name="d_submission" required><br>
+		<br>Document Preview:<br> 
+    	<input type="file" name="classnotes" value="" /><br />
 		<br><input type="submit" name="submit">
+		
 	</form>
 </body>
 </html>
