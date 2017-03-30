@@ -74,7 +74,8 @@ if (!isset($_GET['task_id'])) {
 
 			<!--IMPLEMENT THESE! IMPORTANT-->
 			<?php if ($_GET['expired'] == 0) : ?>
-				<form action="" method="POST">
+				<form action="email_request.php" method="POST">
+					<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
 					<input type="submit" name="request" value="Request for Document">
 				</form>
 				<form action="complete_task.php" method="POST">

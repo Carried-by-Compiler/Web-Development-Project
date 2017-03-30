@@ -14,9 +14,10 @@
 - [ ] [View tutorial on moodle](http://moodle2.csis.ul.ie) 
 - [ ] **hashing password**
 - [ ] Stop users accessing internal webpages when not logged in
-- [ ] Implement Eoghan's validation (login)
-- [ ] Get Eoghan's validation for registration
-- [ ] Confirm password mechanism
+- [X] ~~Implement Eoghan's validation (login)~~
+- [X] ~~Get Eoghan's validation for registration~~
+- [X] ~~Confirm password mechanism~~
+- [ ] Make validation neater (no popups)
 ## Main User's Page
 ### Task Stream
 - [X] ~~Display tasks onto task stream~~
@@ -28,8 +29,8 @@
 - [ ] Make task creation neater (Sophia's HTML/CSS)
 ### Task Claiming
 - [X] ~~Code for basic claiming~~
-- [ ] **Email sending (*Must try in uni server*)**
-- [ ] **Sending task to claimant**
+- [X] **Email sending (*Must try in uni server*)**
+- [X] **Sending task to claimant**
 - [X] ~~Display + download task preview~~
 ### "My Tasks" Page
 - [X] ~~Write code for displaying a list of tasks you published.~~
