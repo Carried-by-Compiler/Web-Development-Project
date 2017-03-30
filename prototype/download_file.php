@@ -4,7 +4,8 @@
 function download($filename){
   if(!empty($filename)){
     // Specify file path.
-    $path = 'C:/wamp64/www/pro/uploaded_files/'; // CHANGE THIS FOR SERVER
+	define ('SITE_ROOT', realpath(dirname(__FILE__))."\\uploaded_files\\");
+    $path = SITE_ROOT; // CHANGE THIS FOR SERVER
     $download_file =  $path.$filename;
     // Check file is exists on given path.
     if(file_exists($download_file))

@@ -50,8 +50,8 @@ if (!isset($_SESSION['user']) || !isset($_POST['submit'])) {
 	}
 	
 
-	//define ("FILEREPOSITORY","C:/wamp64/www/pro/test/uploaded_files"); //Set a constant
-	define ('SITE_ROOT', realpath(dirname(__FILE__)));
+	//define ("FILEREPOSITORY","C:/wamp64/www/pro/test/uploaded_files"); //Set a constant (localhost)
+	define ('SITE_ROOT', realpath(dirname(__FILE__))); // define ('SITE_ROOT', realpath(dirname(__FILE__)));
     
     
     if (is_uploaded_file($_FILES['classnotes']['tmp_name'])) { //file posted?
