@@ -1,4 +1,13 @@
 /*
+Courses table
+*/
+CREATE TABLE IF NOT EXISTS `Courses` (
+	`Course_ID` int unsigned NOT NULL,
+	`Name` varchar(128) NOT NULL,
+	PRIMARY KEY (`Course_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
+
+/*
 Users table
 */
 CREATE TABLE IF NOT EXISTS `Users` (
@@ -6,11 +15,12 @@ CREATE TABLE IF NOT EXISTS `Users` (
     `FirstName` varchar(128) NOT NULL,
     `LastName` varchar(128) NOT NULL,
     `Email` varchar(128) NOT NULL,
-    `Subject` varchar(126) NOT NULL,
+    `Subject` int unsigned NOT NULL,
     `Rep_Points` int DEFAULT '0',
     `Password` varchar(255) NOT NULL,
     PRIMARY KEY (`User_ID`),
-    UNIQUE KEY (`Email`)
+    UNIQUE KEY (`Email`),
+    FOREIGN KEY (`Subject`) REFERENCES `Courses`(`Course_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 /*
@@ -27,7 +37,9 @@ CREATE TABLE IF NOT EXISTS `Tasks` (
     `Words` int unsigned DEFAULT 0,
     `Format` varchar(10) DEFAULT NULL,
     PRIMARY KEY (`Task_ID`, `Owner`),
-    /* A user's tasks should be deleted so that potential claimants cannot ask a non-existent user for their task */
+    /* 	A user's tasks should be deleted when a user is removed
+    	so that potential claimants cannot ask a non-existent user for their task 
+    */
     FOREIGN KEY (`Owner`) REFERENCES `Users`(`User_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
@@ -37,7 +49,9 @@ Tags table
 CREATE TABLE IF NOT EXISTS `Tags` (
 	`Tag_ID` int unsigned NOT NULL AUTO_INCREMENT,
 	`Title` varchar(20) NOT NULL,
-	PRIMARY KEY (`Tag_ID`)
+	`Course_ID` int unsigned NOT NULL,
+	PRIMARY KEY (`Tag_ID`),
+	FOREIGN KEY (`Course_ID`) REFERENCES `Courses`(`Course_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 /*
@@ -46,6 +60,7 @@ Task_Tags table
 CREATE TABLE IF NOT EXISTS `Task_Tags` (
 	`Task_ID` int unsigned NOT NULL,
 	`Tag_ID` int unsigned NOT NULL,
+	PRIMARY KEY (`Task_ID`, `Tag_ID`),
 	FOREIGN KEY (`Task_ID`) REFERENCES `Tasks`(`Task_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (`Tag_ID`) REFERENCES `Tags`(`Tag_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;

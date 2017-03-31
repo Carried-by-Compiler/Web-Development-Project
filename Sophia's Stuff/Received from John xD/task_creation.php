@@ -1,6 +1,26 @@
 <?php
 
+/*
+FOR TAGS:
+
+- Get a list of tags related to course of study
+- User should also have an option to add a tag for their course (optional)
+
+- display list of tags to them for their choice.
+- can choose max 4 tags
+*/
+require("/models/User.class.php");
 session_start();
+
+if (!isset($_SESSION['user'])) {
+	header("Location: index.php");
+} else {
+	$courseID = $_SESSION['user']->getSubject();
+	require("/connect.php");
+	$result = $dbh->prepare("SELECT Tag_ID, Title FROM Tags WHERE Course_ID = :id"); // Get list of tag names associated with their course
+	$result->bindParam(":id", $courseID);
+	
+}
 
 ?>
 <!DOCTYPE html>
@@ -33,6 +53,42 @@ session_start();
 			<option value="pdf">PDF</option>
 			<option value="doc">DOC</option>
 			<option value="docx">DOCX</option>
+		</select>
+		<br>Tags:<br>
+		<select name="tag1">
+		<?php 
+			$result->execute();
+			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+				echo "<option value='".$row['Tag_ID']."'>".$row['Title']."</option>";
+			}
+		?>
+		</select>
+		<select name="tag2">
+		<?php 
+			echo "<option value=''>--</option>";
+			$result->execute();
+			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+				echo "<option value='".$row['Tag_ID']."'>".$row['Title']."</option>";
+			}
+		?>
+		</select>
+		<select name="tag3">
+		<?php 
+			echo "<option value=''>--</option>";
+			$result->execute();
+			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+				echo "<option value='".$row['Tag_ID']."'>".$row['Title']."</option>";
+			}
+		?>
+		</select>
+		<select name="tag4">
+		<?php
+			echo "<option value=''>--</option>";
+			$result->execute();
+			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+				echo "<option value='".$row['Tag_ID']."'>".$row['Title']."</option>";
+			}
+		?>
 		</select>
 		<br>Number of words:<br>
 		<input type="number" name="words" min="1"><br>

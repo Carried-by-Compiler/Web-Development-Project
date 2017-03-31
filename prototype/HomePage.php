@@ -60,7 +60,17 @@
 			<p><?php echo $_SESSION['user']->getEmail(); ?></p>
 			<br>
 			<h3>Subject</h3>
-			<p><?php echo $_SESSION['user']->getSubject(); ?></p>
+			<p>
+				<?php 
+					$courseID = $_SESSION['user']->getSubject(); 
+					require("/connect.php");
+					$result = $dbh->prepare("SELECT name FROM Courses WHERE Course_ID = :id");
+					$result->bindParam(":id", $courseID);
+					$result->execute();
+					$row = $result->fetch(PDO::FETCH_ASSOC);
+					echo $row['name'];
+				?>
+			</p>
 			<br>
 			<h3>Reputation Points</h3>
 			<p><?php echo $_SESSION['user']->getPoints(); ?></p>

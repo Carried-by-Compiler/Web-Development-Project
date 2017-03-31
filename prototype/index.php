@@ -160,12 +160,12 @@ $result->execute();
 				<li class="dropdown"><a href="#" class="dropdown-btn">Subject</a>
 					<div class="dropdown-menu">
 						<select name="opt">
-						<option value="Computer Science">Computer Science</option>
-						<option value="Engineering">Engineering</option>
-						<option value="Mathematics">Mathematics</option>
-						<option value="Science">Science</option>
-						<option value="Law">Law</option>
-						<option value="Business">Business</option>
+						<option value="111">Computer Science</option>
+						<option value="222">Engineering</option>
+						<option value="333">Mathematics</option>
+						<option value="444">Science</option>
+						<option value="555">Law</option>
+						<option value="666">Business</option>
 						</select>	
 					</div>
 			</div>

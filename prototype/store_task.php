@@ -8,7 +8,7 @@ if (!isset($_SESSION['user']) || !isset($_POST['submit'])) {
 } else {
 	
 	try {
-		require("connect.php");
+		require("/connect.php");
 		$query = "INSERT INTO Tasks (Owner, Date_Created, Title, Type, Description, Pages, Words, Format)
 	   	 	  VALUES
 	   	      (:owner, NOW(), :title, :type, :d, :p, :w, :f);";
@@ -26,6 +26,7 @@ if (!isset($_SESSION['user']) || !isset($_POST['submit'])) {
 		
 		$last = $dbh->lastInsertID();
 
+		// Inserting data for deadlinesn table
 		$query = "INSERT INTO Deadlines (Task_ID, Claim_D, Sub_D)
 				  VALUES (:id, :c, :s)";
 		$deadlinesInput = $dbh->prepare($query);
@@ -34,11 +35,41 @@ if (!isset($_SESSION['user']) || !isset($_POST['submit'])) {
 		$deadlinesInput->bindParam(':s', $_POST['d_submission']);
 		$deadlinesInput->execute();
 
+		// Inserting data for task_status table
 		$query = "INSERT INTO Task_Status (Task_ID)
 				  VALUES (:i)";
 		$task_status = $dbh->prepare($query);
 		$task_status->bindParam(':i', $last);
 		$task_status->execute();
+
+		//Inserting data for task_tags table
+		$query = "INSERT INTO Task_Tags (Task_ID, Tag_ID)
+				  VALUES (:task_id, :tag_id)";
+		$task_tag = $dbh->prepare($query);
+		if ($_POST['tag1'] != '') {
+			$task_tag->bindParam(':task_id', $last);
+			$task_tag->bindParam(':tag_id', $_POST['tag1']);
+			$task_tag->execute();
+
+		}
+		if ($_POST['tag2'] != '') {
+			$task_tag->bindParam(':task_id', $last);
+			$task_tag->bindParam(':tag_id', $_POST['tag2']);
+			$task_tag->execute();
+
+		}
+		if ($_POST['tag3'] != '') {
+			$task_tag->bindParam(':task_id', $last);
+			$task_tag->bindParam(':tag_id', $_POST['tag3']);
+			$task_tag->execute();
+
+		}
+		if ($_POST['tag4'] != '') {
+			$task_tag->bindParam(':task_id', $last);
+			$task_tag->bindParam(':tag_id', $_POST['tag4']);
+			$task_tag->execute();
+
+		}
 
 		echo "<h1>Task Added Successfully</h1>";
 		echo "<a href='HomePage.php'>Return to Home</a>";
