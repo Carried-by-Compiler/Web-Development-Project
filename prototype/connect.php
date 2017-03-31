@@ -1,10 +1,10 @@
 <?php
 
 
-$servername = "testweb3";
-$dbname = "group4";
-$username = "group4";
-$pass = "various-also-material-ears";
+$servername = "localhost";
+$dbname = "web project";
+$username = "root";
+$pass = "";
 // server password: various-also-material-ears 
 // link to website: http://testweb3.csisad.ul.campus/modules/cs4014/group4/pro
 // link tp phpmyadmin on server: http://testweb3.csisad.ul.campus/phpmyadmin/

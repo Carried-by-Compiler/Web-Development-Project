@@ -21,7 +21,7 @@
 ## Main User's Page
 ### Task Stream
 - [X] ~~Display tasks onto task stream~~
-- [ ] **Implement personalized task stream**
+- [X] ~~**Implement personalized task stream**~~
 - [ ] Create html/css for task stream
 ### Create task
 - [X] ~~**Input tags to tasks**~~
@@ -47,6 +47,6 @@ points AGAIN!
 - [X] ~~Write code for when user cancels a task~~
 - [X] ~~Write code for when a task in the stream has expired.~~
 ### Moderators and Flagging Tasks
-- [ ] Give users of > 40 rep points access to mod status
-- [ ] Give users ability to flag tasks
-- [ ] add mod features
+- [ ] **Give users of > 40 rep points access to mod status**
+- [ ] **Give users ability to flag tasks**
+- [ ] **add mod features**

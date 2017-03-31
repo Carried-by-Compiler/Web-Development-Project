@@ -66,7 +66,7 @@ if (!isset($_SESSION['user'])) {
 						<input type="submit" name="delete" value="Delete Task">
 					</form>
 
-				<?php elseif ($row['Status'] == "UNCLAIMED") : ?>
+				<?php elseif ($row['Status'] == "UNCLAIMED" || $row['Status'] == "FAILED") : ?>
 
 					<?php $_SESSION['t_id'] = $row['Task_ID']; ?>
 
