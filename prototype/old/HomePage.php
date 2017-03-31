@@ -60,17 +60,7 @@
 			<p><?php echo $_SESSION['user']->getEmail(); ?></p>
 			<br>
 			<h3>Subject</h3>
-			<p>
-				<?php 
-					$courseID = $_SESSION['user']->getSubject(); 
-					require("/connect.php");
-					$result = $dbh->prepare("SELECT name FROM Courses WHERE Course_ID = :id");
-					$result->bindParam(":id", $courseID);
-					$result->execute();
-					$row = $result->fetch(PDO::FETCH_ASSOC);
-					echo $row['name'];
-				?>
-			</p>
+			<p><?php echo $_SESSION['user']->getSubject(); ?></p>
 			<br>
 			<h3>Reputation Points</h3>
 			<p><?php echo $_SESSION['user']->getPoints(); ?></p>
@@ -130,23 +120,12 @@
 				where the task does not belong to you and is available to be claimed.
 				The deadline for claiming that task should not have been reached.
 				*/
-				$co = $_SESSION['user']->getSubject();
-				
-				$result = $dbh->prepare("SELECT t.Task_ID, t.Title, DATEDIFF(Claim_D, NOW()) as DIFF
-										 FROM (Tasks t JOIN task_status ts ON t.Task_ID = ts.Task_ID) JOIN Deadlines d ON ts.Task_ID = d.Task_ID
-										 WHERE (t.Owner <> :id AND ts.Status ='PENDING_CLAIM') AND d.Claim_D >= CURDATE() AND t.Task_ID IN (SELECT Task_ID 
-															 FROM (Task_Tags JOIN Tags ON Task_Tags.Tag_ID = Tags.Tag_ID) JOIN Courses ON Tags.Course_ID = Courses.Course_ID
-															 WHERE Courses.Course_ID = :c_id)
-										 ORDER BY d.Claim_D;");
-				
-				/* $result = $dbh->prepare("SELECT Tasks.Task_ID, Tasks.Title, DATEDIFF(Claim_D, NOW()) as DIFF
+				$result = $dbh->prepare("SELECT Tasks.Task_ID, Tasks.Title, DATEDIFF(Claim_D, NOW()) as DIFF
 										 FROM (Tasks JOIN Task_Status ON Tasks.Task_ID = Task_Status.Task_ID)
-										 JOIN Deadlines ON Tasks.Task_ID = Deadlines.Task_ID
-										 WHERE (Owner <> :id AND Status = 'PENDING_CLAIM') AND Claim_D >= CURDATE();
-										 ORDER BY Deadlines.Claim_D;");"); */
+										 	JOIN Deadlines ON Tasks.Task_ID = Deadlines.Task_ID
+										 WHERE (Owner <> :id AND Status = 'PENDING_CLAIM') AND Claim_D >= CURDATE();");
 				$result->bindParam(':id', $_SESSION['user_id']);
-				$result->bindParam(':c_id', $co);
-				$result->execute(); 
+				$result->execute();
 
 				
 				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
