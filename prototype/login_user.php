@@ -5,9 +5,15 @@ if (isset($_POST['id']) && isset($_POST['pass'])) {
 	require("checkUserExistence.php");
 	if (checkUserExistence($_POST['id'], $_POST['pass']) == true) {
 		  
-		session_start();
-		$_SESSION['user_id'] = $_POST['id'];
-		header("Location: HomePage.php");
+		if (checkIfBanned($_POST['id']) == false) {
+			session_start();
+			$_SESSION['user_id'] = $_POST['id'];
+			header("Location: HomePage.php");
+		} else {
+			echo "<h1>This User Has Been Banned</h1>";
+            echo "<p>According to our records, the registering user has been banned. Please contact the admin for more details.</p>";
+		}
+		
 		
 		
 	} else {

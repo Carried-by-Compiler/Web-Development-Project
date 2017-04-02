@@ -96,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `Banned_Users` (
 	`Banned_User` int unsigned NOT NULL,
 	`Banner` int unsigned NOT NULL,
 	`Date_Banned` datetime NOT NULL,
+	`Ban_Desc` varchar(5000) DEFAULT NULL,
 	PRIMARY KEY(`Banned_User`),
 	FOREIGN KEY (`Banned_User`) REFERENCES `Users`(`User_ID`),
 	FOREIGN KEY (`Banner`) REFERENCES `Users`(`User_ID`)
@@ -107,9 +108,10 @@ Flagged_Tasks
 CREATE TABLE IF NOT EXISTS `Flagged_Tasks` (
 	`Task_ID` int unsigned NOT NULL,
 	`Flagger` int unsigned NOT NULL,
-	`Description` varchar(15) NOT NULL,
+	`Flag_Desc` varchar(15) NOT NULL,
 	`Review_Status` varchar(10) DEFAULT 'UNCHECKED',
 	`Date_Flagged` datetime NOT NULL,
 	PRIMARY KEY(`Task_ID`, `Flagger`),
-	FOREIGN KEY(`Task_ID`) REFERENCES `Tasks`(`Task_ID`)
+	FOREIGN KEY(`Task_ID`) REFERENCES `Tasks`(`Task_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(`Flagger`) REFERENCES `Users`(`User_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;

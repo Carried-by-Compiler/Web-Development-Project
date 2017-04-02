@@ -3,7 +3,6 @@
 ## Code Organization
 - [ ] Try to organize project
 *** look up MVC (Model-View-Controller) architecture
-- [ ] Use Session variables to manipulate tasks (Passing task id around site)
 
 ## Database
 - [ ] **Claimant Reviews when completing a task**
@@ -22,7 +21,6 @@
 ### Task Stream
 - [X] ~~Display tasks onto task stream~~
 - [X] ~~**Implement personalized task stream**~~
-- [ ] Create html/css for task stream
 ### Create task
 - [X] ~~**Input tags to tasks**~~
 - [X] ~~File uploading for task preview~~
@@ -36,7 +34,6 @@
 - [X] ~~Write code for displaying a list of tasks you published.~~
 - [X] ~~Have delete task button (Actually deletes a task)~~
 - [X] ~~Add details of task claimant (When a task is claimed)~~
-- [ ] Make it easier for owner to find a specific task.
 - [ ] **Rating feature of completed tasks (Coupled with Deadlines TODO)**
 ### Deadlines
 - [X] ~~Make website check deadlines of tasks~~
@@ -47,6 +44,6 @@ points AGAIN!
 - [X] ~~Write code for when user cancels a task~~
 - [X] ~~Write code for when a task in the stream has expired.~~
 ### Moderators and Flagging Tasks
-- [ ] **Give users of > 40 rep points access to mod status**
-- [ ] **Give users ability to flag tasks**
-- [ ] **add mod features**
+- [X] ~~**Give users of > 40 rep points access to mod status**~~
+- [X] ~~**Give users ability to flag tasks**~~
+- [X] ~~**add mod features**~~

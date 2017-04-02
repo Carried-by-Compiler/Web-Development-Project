@@ -2,7 +2,7 @@
 
 
 function checkUserIdExistence($i) {
-    require("connect.php");
+    require("/connect.php");
 
     $result = $dbh->prepare("SELECT COUNT(*) FROM users WHERE User_ID = :i");
     $result->bindParam(':i', $i);
@@ -17,7 +17,7 @@ function checkUserIdExistence($i) {
 }
 
 function checkUserExistence($i, $p) {
-    require("connect.php");
+    require("/connect.php");
 
     $result = $dbh->prepare("SELECT COUNT(*) FROM users WHERE User_ID = :i AND Password = :p"); // CHANGED implement so that any ID can be used.
     $result->bindParam(':i', $i);
@@ -31,4 +31,20 @@ function checkUserExistence($i, $p) {
     }
 }
 
- ?>
+function checkIfBanned($i) {
+
+    require("/connect.php");
+    $result = $dbh->prepare("SELECT User_ID FROM Users u JOIN Banned_Users b ON u.User_ID = b.Banned_User WHERE u.User_ID = :em ;"); // Check if corresponding email is present
+    $result->bindParam(':em', $i);
+    $result->execute();
+
+    if ($result->rowCount() > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+
+}
+
+?>

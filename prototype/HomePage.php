@@ -43,15 +43,14 @@
 				-->
 
 				<ul>
-					<?php 
-						if ($_SESSION['user']->getPoints() >= 40) {
-							echo "<li><a href=''>View Flagged Tasks</a></li>";
-							echo "<li><a href=''>View Banned Users</a></li>";
-						}
-					?>
 					<h1><?php echo $_SESSION['user']->getF_name()." ".$_SESSION['user']->getS_name(); ?></h1>
 					<li><a href="logout.php">LogOut</a></li>
-					<li><a href="task_history.php">View Task History</a></li>
+					<?php 
+						if ($_SESSION['user']->getPoints() >= 40) {
+							echo "<li><a href='flagged_tasks.php'>View Flagged Tasks</a></li>";
+							echo "<li><a href='view_banned_users.php'>View Banned Users</a></li>";
+						}
+					?>
 					<li><a href="my_tasks.php">View My Tasks</a></li>
 					<li><a href="task_creation.php">Create Task</a></li>
 					
@@ -157,7 +156,7 @@
 
 				
 				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-					echo "<p><a href='task_details.php?task_id=".$row['Task_ID']."&claim=1'>".$row['Title']."</a><br>".$row['DIFF']." days left to claim!</p>";
+					echo "<p><a href='task_details.php?task_id=".$row['Task_ID']."&claim=1'>".$row['Title']."</a><br><strong>".$row['DIFF']."</strong> days left to claim!</p>";
 					echo "<hr>";
 				}
 
