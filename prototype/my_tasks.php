@@ -34,6 +34,15 @@ if (!isset($_SESSION['user'])) {
 			height: 85%;
 			margin-top: 15px;
 		}
+
+		.task_detail .claimant_review {
+			position: absolute;
+			right: 35%;
+			top: 0;
+			height: 500px;
+			width: 350px;
+			overflow-y: auto;
+		}
 	</style>
 </head>
 <body>
@@ -68,7 +77,7 @@ if (!isset($_SESSION['user'])) {
 					<h3><u>Task Status</u></h3>
 					<p><em><?php  echo $row['Status']; ?></em></p>
 					<?php if ($row['Status'] == "PENDING_CLAIM") : ?>
-						<form action="delete_task.php" method="POST">
+						<form action="mod_features.php" method="POST">
 							<input type="hidden" name="t_id" value="<?php  echo $row['Task_ID']; ?>">
 							<input type="submit" name="delete" value="Delete Task">
 						</form>
@@ -90,11 +99,20 @@ if (!isset($_SESSION['user'])) {
 					
 					<?php if ($row['Status'] == 'CLAIMED' || $row['Status'] == 'FAILED' || $row['Status'] == 'COMPLETE'||
 								$row['Status'] == 'CANCELLED'): ?>
+						<form action="mod_features.php" method="POST">
+							<input type="hidden" name="t_id" value="<?php  echo $row['Task_ID']; ?>">
+							<input type="submit" name="delete" value="Remove Task">
+						</form>
 						<?php  
 						$result = $dbh->prepare("SELECT * FROM Users WHERE User_ID = ".$row['Claimant']);
 						$result->execute();
 						$user_row = $result->fetch(PDO::FETCH_ASSOC);
 						?>
+						<div class="claimant_review">
+							<h1>Claimant's Review</h1>
+							<p>Below is the claimant's review of your task.</p>
+							<p><?php  echo $row['Claimant_Review']; ?></p>
+						</div>
 						<div class="claimant_detail">
 							<h2>Claimant's Details</h2>
 							<h3>Firstname</h3>

@@ -52,10 +52,23 @@ if (!isset($_GET['task_id'])) {
 				top: 50px;
 				width: 350px;
 			}
+
+			.task_details #complete_div {
+				position: absolute;
+				right: 100px;
+				top: 50px;
+				width: 350px;
+			}
 		</style>
 		<script>
-			function showDiv() {
+			function showDivFlag() {
 				document.getElementById('flag_div').style.display = "block";
+				document.getElementById('complete_div').style.display = "none";
+			}
+
+			function showDivComplete() {
+				document.getElementById('flag_div').style.display = "none";
+				document.getElementById('complete_div').style.display = "block";
 			}
 		</script>
 	</head>
@@ -90,7 +103,7 @@ if (!isset($_GET['task_id'])) {
 						<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
 						<input type="submit" name="claim" value="Claim Task">
 					</form>
-					<input type="button" name="flag" value="Flag Task" onclick="showDiv()"/>
+					<input type="button" name="flag" value="Flag Task" onclick="showDivFlag()"/>
 					
 				<?php  elseif(isset($_GET['claimed'])): ?>
 
@@ -100,10 +113,6 @@ if (!isset($_GET['task_id'])) {
 							<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
 							<input type="submit" name="request" value="Request for Document">
 						</form>
-						<form action="complete_task.php" method="POST">
-							<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
-							<input type="submit" name="complete" value="Mark as Complete">
-						</form>
 						<form action="cancel_task.php" method="POST">
 							<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
 							<input type="submit" name="cancel" value="Cancel task">
@@ -112,6 +121,7 @@ if (!isset($_GET['task_id'])) {
 							<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
 							<input type="submit" name="flag" value="Flag Task">
 						</form>
+						<input type="submit" name="complete" value="Mark as Complete" onclick="showDivComplete()">
 					<?php else: ?>
 						
 						
@@ -129,6 +139,15 @@ if (!isset($_GET['task_id'])) {
 						</select>
 						<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
 						<input type="submit" name="submit" value="Submit">
+					</form>
+				</div>
+				<div id="complete_div" style="display: none">
+					<h1>Complete Task</h1>
+					<p>Enter your review for the task.</p>
+					<form action="complete_task.php" method="POST" accept-charset="utf-8">
+						<input type="hidden" name="t_id" value="<?php echo $task_id; ?>" required>
+						<textarea name="task_review" rows="5" cols="50"></textarea>
+						<br /><input type="submit" name="submit_complete" value="Complete Task">
 					</form>
 				</div>
 			</div>

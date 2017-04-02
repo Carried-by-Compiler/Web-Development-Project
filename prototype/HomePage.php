@@ -96,7 +96,7 @@
 
 					$result = $dbh->prepare("SELECT t.Task_ID, t.Title, DATEDIFF(dead.Sub_D, NOW()) as DIFF
 											 FROM (Tasks t JOIN Task_Status s ON t.Task_ID = s.Task_ID)
-											      JOIN Deadlines dead ON t.Task_ID = dead.Task_ID
+											 JOIN Deadlines dead ON t.Task_ID = dead.Task_ID
 											 WHERE (Claimant = :id AND Status = 'CLAIMED') 
 											 ORDER BY dead.Sub_D;");
 					$result->bindParam(':id', $_SESSION['user_id']);
@@ -137,19 +137,16 @@
 				The deadline for claiming that task should not have been reached.
 				*/
 				$co = $_SESSION['user']->getSubject();
-				
-				$result = $dbh->prepare("SELECT t.Task_ID, t.Title, DATEDIFF(Claim_D, NOW()) as DIFF
-										 FROM (Tasks t JOIN task_status ts ON t.Task_ID = ts.Task_ID) JOIN Deadlines d ON ts.Task_ID = d.Task_ID
-										 WHERE (t.Owner <> :id AND ts.Status ='PENDING_CLAIM') AND d.Claim_D >= CURDATE() AND t.Task_ID IN (SELECT Task_ID 
-															 FROM (Task_Tags JOIN Tags ON Task_Tags.Tag_ID = Tags.Tag_ID) JOIN Courses ON Tags.Course_ID = Courses.Course_ID
-															 WHERE Courses.Course_ID = :c_id)
-										 ORDER BY d.Claim_D;");
-				
-				/* $result = $dbh->prepare("SELECT Tasks.Task_ID, Tasks.Title, DATEDIFF(Claim_D, NOW()) as DIFF
-										 FROM (Tasks JOIN Task_Status ON Tasks.Task_ID = Task_Status.Task_ID)
-										 JOIN Deadlines ON Tasks.Task_ID = Deadlines.Task_ID
-										 WHERE (Owner <> :id AND Status = 'PENDING_CLAIM') AND Claim_D >= CURDATE();
-										 ORDER BY Deadlines.Claim_D;");"); */
+
+				$query = "SELECT t.Task_ID, t.Title, DATEDIFF(Claim_D, NOW()) as DIFF 
+						  FROM (Tasks t JOIN Task_Status ts ON t.Task_ID = ts.Task_ID)
+						  JOIN Deadlines d ON ts.Task_ID = d.Task_ID
+						  WHERE ((t.Owner <> :id AND ts.Status = 'PENDING_CLAIM') AND d.Claim_D > CURDATE()) AND t.Task_ID IN 
+						  (SELECT Task_Tags.Task_ID
+						   FROM (Task_Tags JOIN Tags ON Task_Tags.Tag_ID = Tags.Tag_ID) JOIN Courses ON Tags.Course_ID = Courses.Course_ID 
+						   WHERE Courses.Course_ID = :c_id)
+						   ORDER BY d.Claim_D;";
+				$result = $dbh->prepare($query);
 				$result->bindParam(':id', $_SESSION['user_id']);
 				$result->bindParam(':c_id', $co);
 				$result->execute(); 

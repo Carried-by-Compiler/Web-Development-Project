@@ -32,10 +32,11 @@ CREATE TABLE IF NOT EXISTS `Tasks` (
     `Date_Created` datetime NOT NULL,
     `Title` varchar(255) DEFAULT NULL,
     `Type` varchar(20) DEFAULT NULL,
-    `Description` varchar(5000) DEFAULT NULL,
+    `Description` text DEFAULT NULL,
     `Pages` int unsigned DEFAULT 0,
     `Words` int unsigned DEFAULT 0,
     `Format` varchar(10) DEFAULT NULL,
+    `Claimant_Review` text DEFAULT NULL
     PRIMARY KEY (`Task_ID`, `Owner`),
     /* 	A user's tasks should be deleted when a user is removed
     	so that potential claimants cannot ask a non-existent user for their task 
@@ -96,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `Banned_Users` (
 	`Banned_User` int unsigned NOT NULL,
 	`Banner` int unsigned NOT NULL,
 	`Date_Banned` datetime NOT NULL,
-	`Ban_Desc` varchar(5000) DEFAULT NULL,
+	`Ban_Desc` text DEFAULT NULL,
 	PRIMARY KEY(`Banned_User`),
 	FOREIGN KEY (`Banned_User`) REFERENCES `Users`(`User_ID`),
 	FOREIGN KEY (`Banner`) REFERENCES `Users`(`User_ID`)

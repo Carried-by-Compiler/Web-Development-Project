@@ -34,12 +34,11 @@
 - [X] ~~Write code for displaying a list of tasks you published.~~
 - [X] ~~Have delete task button (Actually deletes a task)~~
 - [X] ~~Add details of task claimant (When a task is claimed)~~
-- [ ] **Rating feature of completed tasks (Coupled with Deadlines TODO)**
+- [X] **Rating feature of completed tasks (Coupled with Deadlines TODO)**
 ### Deadlines
 - [X] ~~Make website check deadlines of tasks~~
-- [ ] FIX problem where if you you refresh the page in task_details.php (when task is expired), you deduct 30 
+- [ ] FIX problem where if you you refresh the page in task_details.php (when task is expired), you deduct 30 points AGAIN!
 - [X] ~~Task not marked as FAILED when submission deadlines expires.~~
-points AGAIN!
 - [X] ~~Write code for when user completes task~~
 - [X] ~~Write code for when user cancels a task~~
 - [X] ~~Write code for when a task in the stream has expired.~~
