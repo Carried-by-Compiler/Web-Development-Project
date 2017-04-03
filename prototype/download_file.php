@@ -4,7 +4,7 @@
 function download($filename){
   if(!empty($filename)){
     // Specify file path.
-	define ('SITE_ROOT', realpath(dirname(__FILE__))."\\uploaded_files\\");
+  define ('SITE_ROOT', realpath(dirname(__FILE__))."\\uploaded_files\\");
     $path = SITE_ROOT; // CHANGE THIS FOR SERVER
     $download_file =  $path.$filename;
     // Check file is exists on given path.
@@ -30,10 +30,11 @@ function download($filename){
     }
     else
     {
-      echo 'File does not exists on given path';
+      echo '<h1>File does not exists on given path</h1>';
+      echo "<a href='HomePage.php'>Return home</a>";
     }
- 
- }
+
+  }
 }
 if (isset($_GET['file']))
   download($_GET['file']);
