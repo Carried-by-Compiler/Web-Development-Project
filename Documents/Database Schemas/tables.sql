@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `Tasks` (
     `Pages` int unsigned DEFAULT 0,
     `Words` int unsigned DEFAULT 0,
     `Format` varchar(10) DEFAULT NULL,
-    `Claimant_Review` text DEFAULT NULL
+    `Claimant_Review` text DEFAULT NULL,
     PRIMARY KEY (`Task_ID`, `Owner`),
     /* 	A user's tasks should be deleted when a user is removed
     	so that potential claimants cannot ask a non-existent user for their task 
@@ -109,7 +109,7 @@ Flagged_Tasks
 CREATE TABLE IF NOT EXISTS `Flagged_Tasks` (
 	`Task_ID` int unsigned NOT NULL,
 	`Flagger` int unsigned NOT NULL,
-	`Flag_Desc` varchar(15) NOT NULL,
+	`Flag_Desc` varchar(20) NOT NULL,
 	`Review_Status` varchar(10) DEFAULT 'UNCHECKED',
 	`Date_Flagged` datetime NOT NULL,
 	PRIMARY KEY(`Task_ID`, `Flagger`),

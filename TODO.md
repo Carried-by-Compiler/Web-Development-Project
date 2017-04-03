@@ -21,6 +21,7 @@
 ### Task Stream
 - [X] ~~Display tasks onto task stream~~
 - [X] ~~**Implement personalized task stream**~~
+- [ ] **Have option to view tasks from different subjects**
 ### Create task
 - [X] ~~**Input tags to tasks**~~
 - [X] ~~File uploading for task preview~~

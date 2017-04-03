@@ -61,6 +61,10 @@ if (!isset($_POST['delete']) && !isset($_POST['seen']) && !isset($_POST['ban']) 
 		$result = $dbh->prepare("DELETE FROM Banned_Users WHERE Banned_User = :id");
 		$result->bindParam(':id', $_POST['uid']);
 		$result->execute();
+      
+      $rep_reset = $dbh->prepare("UPDATE Users SET Rep_Points = -10 WHERE User_ID = :i");
+      $rep_reset->bindParam(':i', $_POST['uid']);
+      $rep_reset->execute();
 
 		header("Location: HomePage.php");
 	}

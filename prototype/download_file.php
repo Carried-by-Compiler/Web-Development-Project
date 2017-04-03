@@ -31,7 +31,7 @@ function download($filename){
     else
     {
       echo '<h1>File does not exists on given path</h1>';
-      echo "<a href='HomePage.php'>Return home</a>"
+      echo "<a href='HomePage.php'>Return home</a>";
     }
 
   }

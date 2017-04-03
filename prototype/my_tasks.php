@@ -82,14 +82,9 @@ if (!isset($_SESSION['user'])) {
 							<input type="submit" name="delete" value="Delete Task">
 						</form>
 
-					<?php elseif ($row['Status'] == "UNCLAIMED" || $row['Status'] == "FAILED") : ?>
+					<?php elseif ($row['Status'] == "UNCLAIMED" || $row['Status'] == "FAILED" || $row['Status'] == "CANCELLED") : ?>
 
 						<?php $_SESSION['t_id'] = $row['Task_ID']; ?>
-
-						<form action="mod_features.php" method="POST">
-							<input type="hidden" name="t_id" value="<?php  echo $row['Task_ID']; ?>">
-							<input type="submit" name="delete" value="Delete Task">
-						</form>
 						<form action="republish_task.php" method="POST">
 							<input type="hidden" name="t_id" value="<?php  echo $row['Task_ID']; ?>">
 							<input type="submit" name="republish" value="Republish Task">
