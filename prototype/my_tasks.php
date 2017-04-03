@@ -103,6 +103,7 @@ if (!isset($_SESSION['user'])) {
 						$result->execute();
 						$user_row = $result->fetch(PDO::FETCH_ASSOC);
 						?>
+<<<<<<< HEAD
 						<?php if ($row['Status'] == 'COMPLETE') : ?>
 						<div class="claimant_review">
 							<h1>Claimant's Review</h1>
@@ -125,6 +126,13 @@ if (!isset($_SESSION['user'])) {
 						</div>
 						<?php endif; ?>
 						
+=======
+						<div class="claimant_review">
+							<h1>Claimant's Review</h1>
+							<p>Below is the claimant's review of your task.</p>
+							<p><?php  echo $row['Claimant_Review']; ?></p>
+						</div>
+>>>>>>> 998f5f09cd0118981344d0df6354bea37b094f93
 						<div class="claimant_detail">
 							<h2>Claimant's Details</h2>
 							<h3>Firstname</h3>
@@ -134,7 +142,10 @@ if (!isset($_SESSION['user'])) {
 							<h3>E-mail Address</h3>
 							<p><?php echo $user_row['Email'] ?></p>
 						</div>
+<<<<<<< HEAD
 						
+=======
+>>>>>>> 998f5f09cd0118981344d0df6354bea37b094f93
 					<?php endif; ?>
 				</div>
 			</div>

@@ -39,4 +39,10 @@ INSERT INTO Tags (Title, Course_ID) VALUES
 ('accountancy', 666);
 
 INSERT INTO Users (User_ID, FirstName, LastName, Email, Subject, Password) VALUES
-(15167798, 'John', 'Juele', '15167798@studentmail.ul.ie', 111, 'John1234');
+(15167798, 'John', 'Juele', '15167798@studentmail.ul.ie', 111, 'John1234'),
+(11111111, 'Sophia', 'Colgan', '11111111@studentmail.ul.ie', 111, 'Sophia1234'),
+(22222222, 'Eoghan', 'Casey', '22222222@studentmail.ul.ie', 111, 'Eoghan1234'),
+(33333333, 'Donagh', 'Kelleher', '33333333@studentmail.ul.ie', 111, 'Donagh1234'),
+(44444444, 'Henry', 'Maughan', '44444444@studentmail.ul.ie', 333, 'Henry1234'),
+(55555555, 'Aaron', 'Jones', '55555555@studentmail.ul.ie', 222, 'Aaron1234'),
+(66666666, 'Conor', 'Reale', '66666666@studentmail.ul.ie', 222, 'Conor1234');

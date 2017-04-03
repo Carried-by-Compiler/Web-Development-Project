@@ -43,11 +43,18 @@
 				-->
 
 				<ul>
+					<?php 
+						if ($_SESSION['user']->getPoints() >= 40) {
+							echo "<li><a href=''>View Flagged Tasks</a></li>";
+							echo "<li><a href=''>View Banned Users</a></li>";
+						}
+					?>
 					<h1><?php echo $_SESSION['user']->getF_name()." ".$_SESSION['user']->getS_name(); ?></h1>
 					<li><a href="logout.php">LogOut</a></li>
 					<li><a href="task_history.php">View Task History</a></li>
 					<li><a href="my_tasks.php">View My Tasks</a></li>
 					<li><a href="task_creation.php">Create Task</a></li>
+					
 				</ul>
 			</div>
 		</div>
@@ -60,7 +67,17 @@
 			<p><?php echo $_SESSION['user']->getEmail(); ?></p>
 			<br>
 			<h3>Subject</h3>
-			<p><?php echo $_SESSION['user']->getSubject(); ?></p>
+			<p>
+				<?php 
+					$courseID = $_SESSION['user']->getSubject(); 
+					require("/connect.php");
+					$result = $dbh->prepare("SELECT name FROM Courses WHERE Course_ID = :id");
+					$result->bindParam(":id", $courseID);
+					$result->execute();
+					$row = $result->fetch(PDO::FETCH_ASSOC);
+					echo $row['name'];
+				?>
+			</p>
 			<br>
 			<h3>Reputation Points</h3>
 			<p><?php echo $_SESSION['user']->getPoints(); ?></p>
@@ -81,7 +98,7 @@
 					$result = $dbh->prepare("SELECT t.Task_ID, t.Title, DATEDIFF(dead.Sub_D, NOW()) as DIFF
 											 FROM (Tasks t JOIN Task_Status s ON t.Task_ID = s.Task_ID)
 											      JOIN Deadlines dead ON t.Task_ID = dead.Task_ID
-											 WHERE (Claimant = :id AND Status = 'CLAIMED') AND dead.Sub_D >= CURDATE()
+											 WHERE (Claimant = :id AND Status = 'CLAIMED') 
 											 ORDER BY dead.Sub_D;");
 					$result->bindParam(':id', $_SESSION['user_id']);
 					$result->execute();
@@ -91,10 +108,10 @@
 						// If there is a task that has been expired for submission
 						// change its status and deduct 30 rep points
 						if ($row['DIFF'] > 0) {
-							echo "<p><a href='task_details.php?task_id=".$row['Task_ID']."&claimed=1&expired=0'>".$row['Title']."</a><br>".$row['DIFF']." days left!</p>";
+							echo "<p><a href='task_details.php?task_id=".$row['Task_ID']."&claimed=1&expired=0'>".$row['Title'].":</a><br><strong>".$row['DIFF']."</strong> days left!</p>";
 							echo "<hr>";
 						} else {
-							echo "<p><a href='task_details.php?task_id=".$row['Task_ID']."&claimed=1&expired=1'>".$row['Title']."</a>: ".$row['DIFF']." days left!</p>";
+							echo "<p><a href='task_details.php?task_id=".$row['Task_ID']."&claimed=1&expired=1'>".$row['Title']."</a>:<br><strong>FAILED</strong> to submit!</p>";
 							echo "<hr>";
 						}
 						
@@ -120,12 +137,23 @@
 				where the task does not belong to you and is available to be claimed.
 				The deadline for claiming that task should not have been reached.
 				*/
-				$result = $dbh->prepare("SELECT Tasks.Task_ID, Tasks.Title, DATEDIFF(Claim_D, NOW()) as DIFF
+				$co = $_SESSION['user']->getSubject();
+				
+				$result = $dbh->prepare("SELECT t.Task_ID, t.Title, DATEDIFF(Claim_D, NOW()) as DIFF
+										 FROM (Tasks t JOIN task_status ts ON t.Task_ID = ts.Task_ID) JOIN Deadlines d ON ts.Task_ID = d.Task_ID
+										 WHERE (t.Owner <> :id AND ts.Status ='PENDING_CLAIM') AND d.Claim_D >= CURDATE() AND t.Task_ID IN (SELECT Task_ID 
+															 FROM (Task_Tags JOIN Tags ON Task_Tags.Tag_ID = Tags.Tag_ID) JOIN Courses ON Tags.Course_ID = Courses.Course_ID
+															 WHERE Courses.Course_ID = :c_id)
+										 ORDER BY d.Claim_D;");
+				
+				/* $result = $dbh->prepare("SELECT Tasks.Task_ID, Tasks.Title, DATEDIFF(Claim_D, NOW()) as DIFF
 										 FROM (Tasks JOIN Task_Status ON Tasks.Task_ID = Task_Status.Task_ID)
-										 	JOIN Deadlines ON Tasks.Task_ID = Deadlines.Task_ID
-										 WHERE (Owner <> :id AND Status = 'PENDING_CLAIM') AND Claim_D >= CURDATE();");
+										 JOIN Deadlines ON Tasks.Task_ID = Deadlines.Task_ID
+										 WHERE (Owner <> :id AND Status = 'PENDING_CLAIM') AND Claim_D >= CURDATE();
+										 ORDER BY Deadlines.Claim_D;");"); */
 				$result->bindParam(':id', $_SESSION['user_id']);
-				$result->execute();
+				$result->bindParam(':c_id', $co);
+				$result->execute(); 
 
 				
 				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {

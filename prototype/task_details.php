@@ -86,6 +86,7 @@ if (!isset($_GET['task_id'])) {
 				<p> <?php echo $row['Claim_D'];  ?></p>
 				<h3>Submission Expiry Date</h3>
 				<p><?php echo $row['Sub_D'];  ?></p>
+<<<<<<< HEAD
 				<h2>Tags</h2>
 				<ul>
 					<?php
@@ -99,6 +100,8 @@ if (!isset($_GET['task_id'])) {
 						<li><?php echo $tag_row['Title']; ?></li>
 					<?php endwhile; ?>
 				</ul>
+=======
+>>>>>>> 998f5f09cd0118981344d0df6354bea37b094f93
 				<h2>Other Info</h2>
 				<ul>
 					<li>Type: <?php echo $row['Type'];  ?></li>
