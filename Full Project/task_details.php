@@ -12,8 +12,8 @@ if (!isset($_GET['task_id'])) {
 		$result->bindParam(':id', $task_id);
 		$result->execute();
 		$_SESSION['user']->setPoints(-30);
-		echo "<h1>FAILED TO SUBMIT TASK</h1>";
-		echo "<p>You have lost 30 reputation points for failing to submit your task</p>";
+		/*echo "<h1>FAILED TO SUBMIT TASK</h1>";
+		echo "<p>You have lost 30 reputation points for failing to submit your task</p>";*/
 	}
 	$result = $dbh->prepare("SELECT * FROM Tasks NATURAL JOIN Deadlines WHERE Tasks.Task_ID = :id");
 	$result->bindParam(':id', $task_id);
@@ -47,6 +47,7 @@ if (!isset($_GET['task_id'])) {
 	<body>
 	<div id="main">
 			<div id="header">
+				<h1><?php echo $row['Title']; ?></h1>
 				<div id="menubar">
 				<ul id="menu">
 				  <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
@@ -55,25 +56,14 @@ if (!isset($_GET['task_id'])) {
 				</ul>
 			  </div>
 			</div>
-	<div class="sidebar">
-	 <div class="sidebar">
-		<div class="sidebar_top"></div>
-			<div class="sidebar_item">
-				<h3>Search</h3>
-					<form method="post" action="#" id="search_form">
-					  <p>
-						<input class="search" type="text" name="search_field" value="Enter keywords....." />
-						<input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
-					  </p>
-					</form>
-				</div>
-			</div>
-		<div class="sidebar_base"></div>
-	</div>
 		<div class="task_container">
 			
 			<div class="task_details">
-				<h1><?php echo $row['Title']; ?></h1>
+			<?php if (isset($_GET['expired']) && $_GET['expired'] == 1): ?>
+				<h1>FAILED TO SUBMIT TASK</h1>
+				<p>You have lost 30 reputation points for failing to submit your task</p>
+			<?php endif; ?>
+				
 				<h2>Description</h2>
 				<p> <?php echo $row['Description']; ?></p>
 				<h2>Deadlines</h2>
@@ -109,6 +99,7 @@ if (!isset($_GET['task_id'])) {
 						<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
 						<input type="submit" name="claim" value="Claim Task">
 					</form>
+					<br>
 					<input type="button" name="flag" value="Flag Task" onclick="showDivFlag()"/>
 					
 				<?php  elseif(isset($_GET['claimed'])): ?>
@@ -126,8 +117,10 @@ if (!isset($_GET['task_id'])) {
 						<form action="flag_task.php" method="POST">
 							<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
 							<input type="submit" name="flag" value="Flag Task">
+							<br>
 						</form>
 						<input type="submit" name="complete" value="Mark as Complete" onclick="showDivComplete()">
+						`<br>
 					<?php else: ?>
 						
 						
@@ -159,6 +152,7 @@ if (!isset($_GET['task_id'])) {
 			</div>
 			
 		</div>
+		<br>
 		<div id="content_footer"></div>
     <div id="footer">
       <p><a href="HomePage.html">Home</a> | <a href="TaskCreate.html">Task Creation</a> | <a href="MyTasks.html">My Tasks</a> | <a href="contact.html">Contact Us</a></p>

@@ -17,6 +17,18 @@ p
 img
 { border: 0;}
 
+#header h1 {
+  display: inline-block;
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-bottom: 0;
+  font-size: 38px;
+}
+
+#content p {
+  padding-bottom: 10px;
+}
+
 h1, h2, h3, h4, h5, h6 
 { color: #E7746F;
   letter-spacing: 0em;
@@ -141,9 +153,14 @@ ol li
   padding: 4px 0 0 0;
   color: #FFF;}
 
-#menubar
-{ width: 880px;
-  height: 46px;} 
+#menubar { 
+  position: absolute;
+  width: 880px;
+  height: 46px;
+  display: inline-block;
+  right: 0;
+  top: 60px;
+} 
 
 ul#menu
 { float: right;

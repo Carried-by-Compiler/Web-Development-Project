@@ -8,11 +8,11 @@ $result = $dbh->prepare("UPDATE Task_Status ts
 						 WHERE Deadlines.Claim_D <= CURDATE() AND Status = 'PENDING_CLAIM'");
 $result->execute();
 
-$result = $dbh->prepare("UPDATE Task_Status ts
+/*$result = $dbh->prepare("UPDATE Task_Status ts
 						 INNER JOIN Deadlines ON ts.Task_ID = Deadlines.Task_ID 
 						 SET ts.Status = 'FAILED'
 						 WHERE Deadlines.Claim_D <= CURDATE() AND Status = 'CLAIMED'");
-$result->execute();
+$result->execute();*/
 ?>
 
 <!DOCTYPE html>

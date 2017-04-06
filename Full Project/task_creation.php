@@ -31,6 +31,7 @@ if (!isset($_SESSION['user'])) {
 <body>
 	<div id="main">
 			<div id="header">
+			<h1>Create a Task</h1>
 				<div id="menubar">
 				<ul id="menu">
 				  <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
@@ -65,21 +66,8 @@ if (!isset($_SESSION['user'])) {
 					  </div>
 					  <div class="sidebar_base"></div>
 					</div>
-			<div class="sidebar">
-				  <div class="sidebar_top"></div>
-				  <div class="sidebar_item">
-					<h3>Search</h3>
-					<form method="post" action="#" id="search_form">
-					  <p>
-						<input class="search" type="text" name="search_field" value="Enter keywords....." />
-						<input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
-					  </p>
-					</form>
-				  </div>
-				  <div class="sidebar_base"></div>
-				</div>
 			  </div>
-	<h1>Create a Task</h1>
+	
 	<div id="content">
 	<form action="store_task.php" method="post" enctype="multipart/form-data">
 		Title:<br>

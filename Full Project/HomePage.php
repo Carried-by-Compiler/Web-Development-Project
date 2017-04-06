@@ -40,6 +40,7 @@
 	<body>
 		<div id="main">
 			<div id="header">
+				<h1><?php echo $_SESSION['user']->getF_name()." ".$_SESSION['user']->getS_name(); ?></h1>
 				<div id="menubar">
 				<ul id="menu">
 				  <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
@@ -63,15 +64,13 @@
 								<input type="text" id="searchBar" placeholder="" value="Search..." maxlength="30" autocomplete="off" onmousedown="active();" onblur="inactive();"/><input type="submit" id="searchBtn" value="Go!" />
 							</form>
 						-->
-						<ul>
-							<?php 
-								if ($_SESSION['user']->getPoints() >= 40) {
-									echo "<li><a href='flagged_tasks.php'>View Flagged Tasks</a></li>";
-									echo "<li><a href='view_banned_users.php'>View Banned Users</a></li>";
-								}
-							?>
-							
-						</ul>
+						<?php if ($_SESSION['user']->getPoints() >= 40) : ?>
+							<h3>Moderator Functions</h3>
+							<ul>
+								<li><a href="flagged_tasks.php">View Flagged Tasks</a></li>
+								<li><a href="view_banned_users.php">View Banned Users</a></li>
+							</ul>
+						<?php endif; ?>
 					  </div>
 					  <div class="sidebar_base"></div>
 					</div>
@@ -91,14 +90,11 @@
 			  </div>
 
 		<div id="content">
-			<h3><?php echo $_SESSION['user']->getF_name()." ".$_SESSION['user']->getS_name(); ?></h3>
-			<h3>Univesity ID</h3>
+			<h3><u>University ID</u></h3>
 			<p><?php echo $_SESSION['user']->getId(); ?><p>
-			<br>
-			<h3>Email</h3>
+			<h3><u>Email</u></h3>
 			<p><?php echo $_SESSION['user']->getEmail(); ?></p>
-			<br>
-			<h3>Subject</h3>
+			<h3><u>Subject</u></h3>
 			<p>
 				<?php 
 					$courseID = $_SESSION['user']->getSubject(); 
@@ -110,8 +106,7 @@
 					echo $row['name'];
 				?>
 			</p>
-			<br>
-			<h3>Reputation Points</h3>
+			<h3><u>Reputation Points</u></h3>
 			<p><?php echo $_SESSION['user']->getPoints(); ?></p>
 		</div>
 
