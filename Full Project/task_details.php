@@ -110,17 +110,15 @@ if (!isset($_GET['task_id'])) {
 							<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
 							<input type="submit" name="request" value="Request for Document">
 						</form>
+						<br>
 						<form action="cancel_task.php" method="POST">
 							<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
 							<input type="submit" name="cancel" value="Cancel task">
 						</form>
-						<form action="flag_task.php" method="POST">
-							<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
-							<input type="submit" name="flag" value="Flag Task">
-							<br>
-						</form>
+						<br>
+						<input type="submit" name="flag" value="Flag Task" onclick="showDivFlag()"><br><br>
 						<input type="submit" name="complete" value="Mark as Complete" onclick="showDivComplete()">
-						`<br>
+						<br>
 					<?php else: ?>
 						
 						

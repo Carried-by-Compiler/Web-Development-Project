@@ -47,7 +47,6 @@
 				  <li><a href="HomePage.php">Home</a></li>
 				  <li><a href="my_tasks.php">View My Tasks</a></li>
 				  <li><a href="task_creation.php">Create Task</a></li>
-				  <li><a href="contact.html">Contact Us</a></li>
 				  <li><a href="logout.php">LogOut</a></li>
 				</ul>
 			  </div>
@@ -183,7 +182,7 @@
 	</div>
 	<div id="content_footer"></div>
     <div id="footer">
-      <p><a href="HomePage.html">Home</a> | <a href="TaskCreate.html">Task Creation</a> | <a href="MyTasks.html">My Tasks</a> | <a href="contact.html">Contact Us</a></p>
+      <p><a href="HomePage.html">Home</a> | <a href="TaskCreate.html">Task Creation</a> | <a href="MyTasks.html">My Tasks</a></p>
       <p>Copyright &copy; textured_orbs | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Website templates</a></p>
     </div>
   </div>
