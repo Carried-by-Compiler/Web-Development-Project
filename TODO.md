@@ -5,7 +5,7 @@
 *** look up MVC (Model-View-Controller) architecture
 
 ## Database
-- [ ] **Claimant Reviews when completing a task**
+- [X] ~~**Claimant Reviews when completing a task**~~
 
 ## Landing Page
 
@@ -25,17 +25,16 @@
 ### Create task
 - [X] ~~**Input tags to tasks**~~
 - [X] ~~File uploading for task preview~~
-- [ ] Make task creation neater (Sophia's HTML/CSS)
+- [X] ~~Make task creation neater (Sophia's HTML/CSS)~~
 ### Task Claiming
 - [X] ~~Code for basic claiming~~
-- [X] ~~**Email sending (*Must try in uni server*)**~~
-- [X] ~~**Sending task to claimant**~~
+- [X] ~~Sending task to claimant~~
 - [X] ~~Display + download task preview~~
 ### "My Tasks" Page
 - [X] ~~Write code for displaying a list of tasks you published.~~
 - [X] ~~Have delete task button (Actually deletes a task)~~
 - [X] ~~Add details of task claimant (When a task is claimed)~~
-- [X] **Rating feature of completed tasks (Coupled with Deadlines TODO)**
+- [X] ~~Rating feature of completed tasks (Coupled with Deadlines TODO)~~
 ### Deadlines
 - [X] ~~Make website check deadlines of tasks~~
 - [ ] FIX problem where if you you refresh the page in task_details.php (when task is expired), you deduct 30 points AGAIN!

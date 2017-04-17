@@ -133,6 +133,7 @@ if (!isset($_GET['task_id'])) {
 							<option value="SPAM">Spam</option>
 							<option value="INAPPROPRIATE">Inappropriate</option>
 							<option value="WRONG_SUBJECT">Task in wrong subject</option>
+							<option value="EXPLICIT">Contains explicit material</option>
 						</select>
 						<input type="hidden" name="t_id" value="<?php echo $task_id; ?>">
 						<input type="submit" name="submit" value="Submit">
