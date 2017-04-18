@@ -16,6 +16,13 @@ if (!isset($_SESSION['user'])) {
 	$result = $dbh->prepare("SELECT Tag_ID, Title FROM Tags WHERE Course_ID = :id"); // Get list of tag names associated with their course
 	$result->bindParam(":id", $courseID);
 	
+	require("checkUserExistence.php");
+		
+	$banned = checkIfBanned($_SESSION['user_id']);
+	if ($banned == true) {
+		header("Location: error.php?e=User is banned!");
+	}
+	
 }
 ?>
 <!DOCTYPE html>

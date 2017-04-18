@@ -6,6 +6,13 @@
 		require("./models/User.class.php");
 		$user = new User($_SESSION['user_id']);
 		$_SESSION['user'] = $user;
+		
+		require("checkUserExistence.php");
+		
+		$banned = checkIfBanned($_SESSION['user_id']);
+		if ($banned == true) {
+			header("Location: error.php?e=User is banned!");
+		}
 	}
 ?>
 
@@ -182,7 +189,7 @@
 	</div>
 	<div id="content_footer"></div>
     <div id="footer">
-      <p><a href="HomePage.html">Home</a> | <a href="TaskCreate.html">Task Creation</a> | <a href="MyTasks.html">My Tasks</a></p>
+      <p><a href="HomePage.php">Home</a> | <a href="task_creation.php">Task Creation</a> | <a href="my_tasks.php">My Tasks</a></p>
       <p>Copyright &copy; textured_orbs | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Website templates</a></p>
     </div>
   </div>

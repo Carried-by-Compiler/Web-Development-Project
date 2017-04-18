@@ -5,6 +5,14 @@ require("/connect.php");
 if (!isset($_GET['task_id'])) {
 	header("Location: home_page.php");
 } else {
+	
+	require("checkUserExistence.php");
+		
+	$banned = checkIfBanned($_SESSION['user_id']);
+	if ($banned == true) {
+		header("Location: error.php?e=User is banned!");
+	}
+	
 	$task_id = $_GET['task_id'];
 	if (isset($_GET['expired']) && $_GET['expired'] == 1) {
 		

@@ -9,6 +9,13 @@ if (!isset($_SESSION['user'])) {
 								Deadlines d ON s.Task_ID = d.Task_ID
 								WHERE Owner=".$_SESSION['user_id'].";");
 	$task_info->execute();
+	
+	require("checkUserExistence.php");
+		
+	$banned = checkIfBanned($_SESSION['user_id']);
+	if ($banned == true) {
+		header("Location: error.php?e=User is banned!");
+	}
 }
 ?>
 <!DOCTYPE html>

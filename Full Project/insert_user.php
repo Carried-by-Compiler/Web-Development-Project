@@ -10,7 +10,7 @@ if(!isset($_POST['id'])) {
     $exists = checkUserIdExistence($_POST['id']);  // TODO check if this works.
      if ($exists == true) {
         echo "<h1>User of entered ID already exists!</h1><br>";
-        echo "<a href='login.html'>Click here to login</a>";
+        echo "<a href='login.php'>Click here to login</a>";
     } else {
 
         $banned = checkIfBanned($_POST['id']);
