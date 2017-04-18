@@ -2,7 +2,7 @@
 /*
 flagged_tasks.php:
 - Display all tasks (with details) of flagged tasks
-- Do not include tasks that you have flagged (to avoid abuse of system)
+- Do not include tasks that you have flagged and the owner of the flagged task is not yours (to avoid abuse of system)
 */
 require("/models/User.class.php");
 session_start();
@@ -13,7 +13,7 @@ if (!isset($_SESSION['user'])) {
 	$result = $dbh->prepare("SELECT * 
 							 FROM ((Flagged_Tasks ft JOIN Tasks t ON ft.Task_ID = t.Task_ID) 
 							 JOIN Deadlines d ON d.Task_ID = t.Task_ID)
-							 WHERE Flagger <> ".$_SESSION['user_id']." AND Review_Status = 'UNCHECKED'
+							 WHERE Flagger <> ".$_SESSION['user_id']." AND t.Owner != ".$_SESSION['user_id']." AND Review_Status = 'UNCHECKED'
 							 AND (d.Claim_D > CURDATE() OR d.Sub_D > CURDATE());");
 	$result->execute();
 }

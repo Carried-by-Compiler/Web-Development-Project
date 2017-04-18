@@ -20,9 +20,9 @@ if (isset($_POST['t_id'])) {
 
 	echo "<h1>Cancelled task</h1>";
 	echo "<p>You have lost 15 rep points for cancelling this task.</p>";
-   echo "<a href='HomePage.php'>Return Home</a>;
+   echo "<a href='HomePage.php'>Return Home</a>";
 } else {
-	header("Location: home_page.php");
+	header("Location: HomePage.php");
 }
 
 

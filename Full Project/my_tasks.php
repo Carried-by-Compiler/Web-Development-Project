@@ -91,6 +91,22 @@ if (!isset($_SESSION['user'])) {
 					<p> <?php echo $row['Claim_D'];  ?></p>
 					<h4>Submission Expiry Date</h4>
 					<p><?php echo $row['Sub_D'];  ?></p>
+					<h3><u>Tags</u></h3>
+					<ul>
+						<?php 
+
+							$task_tags = $dbh->prepare("SELECT Title 
+								   						FROM Task_Tags tt JOIN Tags t ON tt.Tag_ID = t.Tag_ID
+								   						WHERE tt.Task_ID = ".$row['Task_ID']);
+							$task_tags->execute();
+							while ($tag_row = $task_tags->fetch(PDO::FETCH_ASSOC)) {
+								echo "<li>".$tag_row['Title']."</li>";
+							}
+
+						?>
+
+					</ul>
+					
 					<h3><u>Other Info</u></h3>
 					<ul>
 						<li>Type: <?php echo $row['Type'];  ?></li>
