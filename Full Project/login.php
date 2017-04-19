@@ -87,7 +87,6 @@ $result->execute();*/
 				<input type="password" id='userpassword' name="pass" placeholder="Enter Password">
 			</div>
 				<input type="submit" name="submit" value="LOGIN" class="btn-login"><br>
-				<a href="#">Forget password?</a>
 		</form>
 	</div>
 </body>

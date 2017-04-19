@@ -52,6 +52,10 @@ if (!isset($_POST['delete']) && !isset($_POST['seen']) && !isset($_POST['ban']) 
 		$r = $dbh->prepare("UPDATE Flagged_Tasks SET Review_Status = 'CHECKED' WHERE Task_ID = ".$_POST['t_id'].
 							" AND Flagger = ". $_POST['f_id']);
 		$r->execute();
+		
+		$delete_tasks = $dbh->prepare("DELETE FROM Tasks WHERE Owner = :owner_id;");
+		$delete_tasks->bindParam(':owner_id', $user_id);
+		$delete_tasks->execute();
 
 
 		header("Location: HomePage.php");
@@ -62,9 +66,9 @@ if (!isset($_POST['delete']) && !isset($_POST['seen']) && !isset($_POST['ban']) 
 		$result->bindParam(':id', $_POST['uid']);
 		$result->execute();
       
-      $rep_reset = $dbh->prepare("UPDATE Users SET Rep_Points = -10 WHERE User_ID = :i");
-      $rep_reset->bindParam(':i', $_POST['uid']);
-      $rep_reset->execute();
+		$rep_reset = $dbh->prepare("UPDATE Users SET Rep_Points = -10 WHERE User_ID = :i");
+		$rep_reset->bindParam(':i', $_POST['uid']);
+		$rep_reset->execute();
 
 		header("Location: HomePage.php");
 	}

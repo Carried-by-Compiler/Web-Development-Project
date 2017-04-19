@@ -11,7 +11,7 @@
 		
 		$banned = checkIfBanned($_SESSION['user_id']);
 		if ($banned == true) {
-			header("Location: error.php?e=User is banned!");
+			header("Location: error.php?e=101");
 		}
 	}
 ?>

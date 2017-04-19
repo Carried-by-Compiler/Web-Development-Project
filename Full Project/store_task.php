@@ -106,7 +106,7 @@ if (!isset($_SESSION['user']) || !isset($_POST['submit'])) {
                 echo "<p>There was a problem uploading the file.</p>";
             }
         } //endIF
-    } //endI
+    } //endIF
 
 	
 

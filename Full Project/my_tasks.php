@@ -26,6 +26,12 @@ if (!isset($_SESSION['user'])) {
 	<meta name="keywords" content="website keywords, website keywords" />
 	<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
 	<link href="./css/MyTasks.css" rel="stylesheet" type="text/css" />
+	<script>
+		function showUploadDiv() {
+			document.getElementById('upload_div').style.display = "block";
+			document.getElementById('div_button').style.display = "none";
+		}
+	</script>
 </head>
 <body>
 	<div id="main">
@@ -83,7 +89,7 @@ if (!isset($_SESSION['user'])) {
 
 				<div class="task_detail">
 					
-					<h2><?php echo $row['Title'];  ?></h2>
+					<h2><strong><?php echo $row['Title'];?></strong></h2>
 					<h3><u>Description</u></h3>
 					<p> <?php echo $row['Description']; ?></p>
 					<h3><u>Deadlines</u></h3>
@@ -180,10 +186,26 @@ if (!isset($_SESSION['user'])) {
 							<p><?php echo $user_row['Email'] ?></p>
 						</div>
 					<?php endif; ?>
+					<br><input type="button" id="div_button" name="upload" value="Upload Task Preview" onclick="showUploadDiv()"/>
+					
+					<div id="upload_div" style="display: none">
+					<h1>Upload File Preview</h1>
+					<form action="upload_preview.php" method="POST" enctype="multipart/form-data">
+						<input type="hidden" name="format" value="<?php  echo $row['Format']; ?>" />
+						<input type="hidden" name="t_id" value="<?php  echo $row['Task_ID']; ?>" />
+						<p>Document Preview:</p> 
+						<input type="file" name="classnotes" value="" /><br>
+						<input type="submit" name="submit" value="Upload Preview" />
+					</form>
+					</div>
 				</div>
+				
+				
 			</div><br><br>
 			<hr>
 		<?php  endwhile; ?>
+		
+		
 	</div>
 	<div id="content_footer"></div>
     <div id="footer">

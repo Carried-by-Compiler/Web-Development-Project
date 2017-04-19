@@ -350,6 +350,9 @@ table tr td
 .task_detail {
 	position: relative;
 }
+.task_container {
+	position: relative;
+}
 .task_detail .claimant_detail {
 	position: absolute;
 	right: 50px;
@@ -364,6 +367,15 @@ table tr td
 	margin-top: 15px;
 }
 .task_detail .claimant_review {
+	position: absolute;
+	right: 35%;
+	top: 0;
+	height: 500px;
+	width: 350px;
+	overflow-y: auto;
+}
+
+.task_container .upload_div {
 	position: absolute;
 	right: 35%;
 	top: 0;

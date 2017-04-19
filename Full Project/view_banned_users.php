@@ -11,7 +11,7 @@ $result->execute();
 		<meta name="description" content="website description" />
 		<meta name="keywords" content="website keywords, website keywords" />
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-		<link href="./css/banned.css" rel="stylesheet" type="text/css" />
+		<link href="./css/MyTasks.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div id="main">
@@ -27,7 +27,7 @@ $result->execute();
 				</ul>
 			  </div>
 			</div>
-			
+		<!--	
 		<div class="sidebar">
 		<div class="sidebar">
 			<div class="sidebar_top"></div>
@@ -42,7 +42,7 @@ $result->execute();
 				</div>
 			</div>
 		</div>
-		<div class="sidebar_base"></div>
+		<div class="sidebar_base"></div> -->
 	
 	
 
