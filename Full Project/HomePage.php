@@ -13,6 +13,15 @@
 		if ($banned == true) {
 			header("Location: error.php?e=101");
 		}
+
+		//Go through all tasks in database and update status depending on current date.
+
+		require("/connect.php");
+		$deadline_update = $dbh->prepare("UPDATE Task_Status ts
+										  INNER JOIN Deadlines ON ts.Task_ID = Deadlines.Task_ID 
+										  SET ts.Status = 'UNCLAIMED'
+										  WHERE Deadlines.Claim_D <= CURDATE() AND Status = 'PENDING_CLAIM'");
+		$deadline_update->execute();
 	}
 ?>
 

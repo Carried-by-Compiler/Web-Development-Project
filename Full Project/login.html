@@ -1,18 +1,3 @@
-<?php
-require("/connect.php");
-$result = $dbh->prepare("UPDATE Task_Status ts
-						 INNER JOIN Deadlines ON ts.Task_ID = Deadlines.Task_ID 
-						 SET ts.Status = 'UNCLAIMED'
-						 WHERE Deadlines.Claim_D <= CURDATE() AND Status = 'PENDING_CLAIM'");
-$result->execute();
-
-/*$result = $dbh->prepare("UPDATE Task_Status ts
-						 INNER JOIN Deadlines ON ts.Task_ID = Deadlines.Task_ID 
-						 SET ts.Status = 'FAILED'
-						 WHERE Deadlines.Claim_D <= CURDATE() AND Status = 'CLAIMED'");
-$result->execute();*/
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +61,7 @@ $result->execute();*/
 	</script>
 </head>
 <body>
-	<form action="index.php"><input type="submit" value="Register"/></form>
+	<form action="index.html"><input type="submit" value="Register"/></form>
 	<div class="container">
 	<img src="./css/user.png">
 		<form id='LoginPage' method="post" action="login_user.php" onsubmit="return validateInfo();">

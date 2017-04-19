@@ -5,6 +5,7 @@ session_start();
 if (!isset($_SESSION['user']) || !isset($_POST['submit'])) {
 	header("Location: index.php");
 } else {
+	
 	$task_id = $_POST['t_id'];
 	$desc = $_POST['flag_desc'];
 	$flagger = $_SESSION['user']->getId();

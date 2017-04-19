@@ -12,10 +12,10 @@ session_start();
 
 // If the page is being accessed without being logged in
 if (!isset($_SESSION['user'])) { 
-	header("Location: login.html");
+	header("Location: login.php");
 } else {
 	if (!isset($_POST['claim'])) {
-		header("Location: home_page.php");
+		header("Location: HomePage.php");
 	} else {
 
 		// Add 10 rep points to user
