@@ -1,4 +1,15 @@
 <?php  
+
+require("/models/User.class.php");
+require("checkUserExistence.php");
+
+session_start();
+	
+$banned = checkIfBanned($_SESSION['user_id']);
+if ($banned == true) {
+	header("Location: error.php?e=101");
+}
+
 require("/connect.php");
 $result = $dbh->prepare("SELECT * FROM Users u JOIN Banned_Users b ON u.User_ID = b.Banned_User;");
 $result->execute();

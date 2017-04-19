@@ -2,36 +2,43 @@
 require("/models/User.class.php");
 session_start();
 require("/connect.php");
-if (!isset($_GET['task_id'])) {
-	header("Location: home_page.php");
+
+if (!isset($_SESSION['user'])) {
+	header("Location: index.php");
 } else {
-	
-	require("checkUserExistence.php");
+	if (!isset($_GET['task_id'])) {
+		header("Location: HomePage.php");
+	} else {
 		
-	$banned = checkIfBanned($_SESSION['user_id']);
-	if ($banned == true) {
-		header("Location: error.php?e=User is banned!");
-	}
-	
-	$task_id = $_GET['task_id'];
-	if (isset($_GET['expired']) && $_GET['expired'] == 1) {
+		require("checkUserExistence.php");
+			
+		$banned = checkIfBanned($_SESSION['user_id']);
+		if ($banned == true) {
+			header("Location: error.php?e=101");
+		}
 		
-		$result = $dbh->prepare("UPDATE Task_Status SET Status = 'FAILED' WHERE Task_ID = :id");
+		$task_id = $_GET['task_id'];
+		if (isset($_GET['expired']) && $_GET['expired'] == 1) {
+			
+			$result = $dbh->prepare("UPDATE Task_Status SET Status = 'FAILED' WHERE Task_ID = :id");
+			$result->bindParam(':id', $task_id);
+			$result->execute();
+			$_SESSION['user']->setPoints(-30);
+			/*echo "<h1>FAILED TO SUBMIT TASK</h1>";
+			echo "<p>You have lost 30 reputation points for failing to submit your task</p>";*/
+		}
+		
+		$result = $dbh->prepare("SELECT * FROM Tasks NATURAL JOIN Deadlines WHERE Tasks.Task_ID = :id");
 		$result->bindParam(':id', $task_id);
 		$result->execute();
-		$_SESSION['user']->setPoints(-30);
-		/*echo "<h1>FAILED TO SUBMIT TASK</h1>";
-		echo "<p>You have lost 30 reputation points for failing to submit your task</p>";*/
+		$row = $result->fetch(PDO::FETCH_ASSOC);
+		$result = $dbh->prepare("SELECT Status FROM Task_Status WHERE Task_ID = :id");
+		$result->bindParam(':id', $task_id);
+		$result->execute();
+		$status_row = $result->fetch(PDO::FETCH_ASSOC);
 	}
-	$result = $dbh->prepare("SELECT * FROM Tasks NATURAL JOIN Deadlines WHERE Tasks.Task_ID = :id");
-	$result->bindParam(':id', $task_id);
-	$result->execute();
-	$row = $result->fetch(PDO::FETCH_ASSOC);
-	$result = $dbh->prepare("SELECT Status FROM Task_Status WHERE Task_ID = :id");
-	$result->bindParam(':id', $task_id);
-	$result->execute();
-	$status_row = $result->fetch(PDO::FETCH_ASSOC);
 }
+
 ?>
 <!DOCTYPE html>
 <html>

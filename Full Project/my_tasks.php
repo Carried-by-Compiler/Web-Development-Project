@@ -1,4 +1,5 @@
 <?php
+require("./models/User.class.php");
 session_start();
 if (!isset($_SESSION['user'])) {
 	header("Location: index.php");
@@ -14,7 +15,7 @@ if (!isset($_SESSION['user'])) {
 		
 	$banned = checkIfBanned($_SESSION['user_id']);
 	if ($banned == true) {
-		header("Location: error.php?e=User is banned!");
+		header("Location: error.php?e=101");
 	}
 }
 ?>
@@ -27,31 +28,23 @@ if (!isset($_SESSION['user'])) {
 	<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
 	<link href="./css/MyTasks.css" rel="stylesheet" type="text/css" />
 	<script>
-		function showUploadDiv() {
-			document.getElementById('upload_div').style.display = "block";
-			document.getElementById('div_button').style.display = "none";
+		function showUploadDiv(v1) {
+			
+			var state = document.getElementById(v1).style.display;
+			
+			if (state == "block") {
+				document.getElementById(v1).style.display = "none";
+			} else {
+				document.getElementById(v1).style.display = "block";
+			}
 		}
 	</script>
 </head>
 <body>
 	<div id="main">
 			<div id="header">
-			
-				<div class="sidebar">
-					<div class="sidebar">
-						<div class="sidebar_top"></div>
-						<div class="sidebar_item">
-						<h3>Search</h3>
-						<form method="post" action="#" id="search_form">
-							<p>
-							<input class="search" type="text" name="search_field" value="Enter keywords....." />
-							<input name="search" type="button" value="Search" <!--style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search"--> />
-							</p>
-						</form>
-						</div>
-					</div>
-					<div class="sidebar_base"></div>
-				</div>
+				
+				
 				<div id="menubar">
 				
 				<ul id="menu">
@@ -186,9 +179,9 @@ if (!isset($_SESSION['user'])) {
 							<p><?php echo $user_row['Email'] ?></p>
 						</div>
 					<?php endif; ?>
-					<br><input type="button" id="div_button" name="upload" value="Upload Task Preview" onclick="showUploadDiv()"/>
+					<br><input type="button" name="upload" value="Upload Task Preview" onclick="showUploadDiv(<?php echo $row['Task_ID']; ?>)"/>
 					
-					<div id="upload_div" style="display: none">
+					<div id="<?php echo $row['Task_ID']; ?>" style="display: none">
 					<h1>Upload File Preview</h1>
 					<form action="upload_preview.php" method="POST" enctype="multipart/form-data">
 						<input type="hidden" name="format" value="<?php  echo $row['Format']; ?>" />
@@ -209,7 +202,7 @@ if (!isset($_SESSION['user'])) {
 	</div>
 	<div id="content_footer"></div>
     <div id="footer">
-      <p><a href="HomePage.html">Home</a> | <a href="TaskCreate.html">Task Creation</a> | <a href="MyTasks.html">My Tasks</a> | <a href="contact.html">Contact Us</a></p>
+      <p><a href="HomePage.php">Home</a> | <a href="task_creation.php">Task Creation</a> | <a href="my_tasks.php">My Tasks</a></p>
       <p>Copyright &copy; textured_orbs | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Website templates</a></p>
     </div>
   </div>

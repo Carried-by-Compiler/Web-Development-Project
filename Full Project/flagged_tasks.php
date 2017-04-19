@@ -9,6 +9,14 @@ session_start();
 if (!isset($_SESSION['user'])) {
 	header("Location: index.php");
 } else {
+	
+	require("checkUserExistence.php");
+			
+	$banned = checkIfBanned($_SESSION['user_id']);
+	if ($banned == true) {
+		header("Location: error.php?e=101");
+	}
+	
 	require("/connect.php");
 	$result = $dbh->prepare("SELECT * 
 							 FROM ((Flagged_Tasks ft JOIN Tasks t ON ft.Task_ID = t.Task_ID) 
