@@ -2,26 +2,26 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="ForAlternativeLogin.css">
 	
 
 </head>
 <body>
-	<div id="wrapper">
-	<!<img src="./css/user.png">
+	<div class="container">
+	<img src="./css/user.png">
 		<form name="LoginPage" method="post" action="index.php" onsubmit="return ValidateInfo()">
 			
-			<div >
-				<input type="text" name="number" placeholder="Enter University ID" class="textInput">
+			<div class= "form-input">
+				<input type="text" name="number" placeholder="Enter University ID" class="input">
 				<div id="ID_error" class="val_error"></div>
 			</div>
 			
-			<div >
-				<input type="password" name="password" placeholder="Enter Password" class="textInput">
+			<div class= "form-input">
+				<input type="password" name="password" placeholder="Enter Password" class="input">
 				<div id="password_error" class="val_error"></div>
 			</div>
 				
-				<input type="submit" name="submit" value="LOGIN" class="btn">
+				<input type="submit" name="submit" value="LOGIN" class="btn-login">
 		</form>
 	</div>
 </body>
