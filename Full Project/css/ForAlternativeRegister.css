@@ -82,3 +82,7 @@ li.dropdown{
 a{
 	color: #fff;
 }
+.val_error
+{
+	color: #FF1F1F;
+}
