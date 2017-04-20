@@ -46,6 +46,10 @@ input[type="text"],input[type="password"]{
 	border-bottom: 4px solid #27ae60;
 	margin-bottom: 20px;
 }
+.val_error{
+	color: #FF1F1F;
+}
+
 a{
 	color: #fff;
 }
