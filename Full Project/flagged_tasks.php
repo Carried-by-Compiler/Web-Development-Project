@@ -7,7 +7,7 @@ flagged_tasks.php:
 require("/models/User.class.php");
 session_start();
 if (!isset($_SESSION['user'])) {
-	header("Location: index.php");
+	header("Location: index.html");
 } else {
 	
 	require("checkUserExistence.php");

@@ -3,7 +3,7 @@
 require("/models/User.class.php");
 session_start();
 if (!isset($_SESSION['user']) || !isset($_POST['submit'])) {
-	header("Location: index.php");
+	header("Location: index.html");
 } else {
 	
 	$task_id = $_POST['t_id'];

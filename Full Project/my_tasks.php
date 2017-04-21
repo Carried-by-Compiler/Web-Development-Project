@@ -2,7 +2,7 @@
 require("./models/User.class.php");
 session_start();
 if (!isset($_SESSION['user'])) {
-	header("Location: index.php");
+	header("Location: index.html");
 } else {
 	require("/connect.php");
 	$task_info = $dbh->prepare("SELECT * 

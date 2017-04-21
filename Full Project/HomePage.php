@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	if (!isset($_SESSION['user_id'])) {
-		header("Location: index.php");
+		header("Location: index.html");
 	} else {
 		require("./models/User.class.php");
 		$user = new User($_SESSION['user_id']);

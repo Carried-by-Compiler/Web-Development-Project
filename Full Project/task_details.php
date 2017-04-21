@@ -4,7 +4,7 @@ session_start();
 require("/connect.php");
 
 if (!isset($_SESSION['user'])) {
-	header("Location: index.php");
+	header("Location: index.html");
 } else {
 	if (!isset($_GET['task_id'])) {
 		header("Location: HomePage.php");

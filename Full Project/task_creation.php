@@ -9,7 +9,7 @@ FOR TAGS:
 require("/models/User.class.php");
 session_start();
 if (!isset($_SESSION['user'])) {
-	header("Location: index.php");
+	header("Location: index.html");
 } else {
 	$courseID = $_SESSION['user']->getSubject();
 	require("/connect.php");

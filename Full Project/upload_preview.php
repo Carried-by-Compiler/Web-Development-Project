@@ -3,7 +3,7 @@
 	session_start();
 
 	if (!isset($_SESSION['user'])) {
-		header("Location: index.php");
+		header("Location: index.html");
 	}
 	
 	require("checkUserExistence.php");
@@ -11,6 +11,11 @@
 	$banned = checkIfBanned($_SESSION['user_id']);
 	if ($banned == true) {
 		header("Location: error.php?e=101");
+	}
+	
+	if (!isset($_FILES['classnotes']['tmp_name'])) {
+		echo "<h1>No file was uploaded!</h1>";
+		echo "<a href='HomePage.php'>Return to HomePage</a>";
 	}
 
 	//define ("FILEREPOSITORY","C:/wamp64/www/pro/test/uploaded_files"); //Set a constant (localhost)
