@@ -23,6 +23,7 @@ $result->execute();
 		<meta name="keywords" content="website keywords, website keywords" />
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
 		<link href="./css/MyTasks.css" rel="stylesheet" type="text/css" />
+		<meta name="viewpoint" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
 	<div id="main">

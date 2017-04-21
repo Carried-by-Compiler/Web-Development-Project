@@ -383,3 +383,122 @@ table tr td
 	width: 350px;
 	overflow-y: auto;
 }
+/*Tablet view*/
+@media screen and (max-width:959px){
+	#header{
+		width:100%;
+	}
+	#main, #logo, #menubar, #site_content, #footer{
+		width:100%;
+	}
+	#menubar{
+		width:80%;
+	}
+	ul#menu{
+		width: 100%;
+	}
+	#site_content{
+		width:80%;
+	}
+
+	#content{
+		width:60%;
+	}
+	#footer{
+		width:100%;
+	}
+	.task_details .flagging {
+		width: 40%;
+	}
+	.task_details #complete_div {
+		width: 40%;
+	}
+	.contents {
+		width: 95%;
+	}
+	.task_detail .claimant_review {
+		width: 40%;
+	}
+
+	.task_container .upload_div {
+		width: 40%;
+	}
+}
+/*Phone view*/
+@media screen and (max-width:620px){
+	#header{
+		width:100%;
+	}
+	#main, #logo, #menubar, #site_content, #footer{
+		width:100%;
+	}
+	#menubar{
+		width:100%;
+	}
+	ul#menu{
+		width:100%;
+	}
+	#site_content{
+		width:80%;
+	}
+	#content{
+		width:60%;
+	}
+	#footer{
+		width:100%;
+	}
+	.task_details .flagging {
+		width: 40%;
+	}
+	.task_details #complete_div {
+		width: 40%;
+	}
+	.contents {
+		width: 95%;
+	}
+	.task_detail .claimant_review {
+		width: 40%;
+	}
+
+	.task_container .upload_div {
+		width: 40%;
+	}
+}
+/*Don't scale down anymore, not many phones are smaller than 302px*/
+@media screen and (max-width:320px){
+	#header{
+		width:100%;
+	}
+	#main, #logo, #menubar, #site_content, #footer{
+		width:100%;
+	}
+	
+	ul#menu{
+		width:100%;
+	}
+	#site_content{
+		width:80%;
+	}
+	#content{
+		width:60%;
+	}
+	#footer{
+		width:100%;
+	}
+	.task_details .flagging {
+		width: 40%;
+	}
+	.task_details #complete_div {
+		width: 40%;
+	}
+	.contents {
+		width: 95%;
+	}
+	.task_detail .claimant_review {
+		width: 40%;
+	}
+
+	.task_container .upload_div {
+		width: 40%;
+	}
+}

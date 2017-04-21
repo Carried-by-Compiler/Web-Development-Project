@@ -34,6 +34,7 @@ if (!isset($_SESSION['user'])) {
 		<meta name="keywords" content="website keywords, website keywords" />
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
 		<link href="./css/navi2.css" rel="stylesheet" type="text/css" />
+		<meta name="viewpoint" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
 	<div id="main">
@@ -43,7 +44,7 @@ if (!isset($_SESSION['user'])) {
 				<ul id="menu">
 				  <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
 				  <li><a href="HomePage.php">Home</a></li>
-				  <li><a href="my_task.php">View My Tasks</a></li>
+				  <li><a href="my_tasks.php">View My Tasks</a></li>
 				</ul>
 			  </div>
 			</div>

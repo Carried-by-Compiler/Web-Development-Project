@@ -22,6 +22,7 @@
 										  SET ts.Status = 'UNCLAIMED'
 										  WHERE Deadlines.Claim_D <= CURDATE() AND Status = 'PENDING_CLAIM'");
 		$deadline_update->execute();
+		
 	}
 ?>
 
@@ -33,22 +34,18 @@
 		<meta name="keywords" content="website keywords, website keywords" />
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
 		<link href="./css/navi2.css" rel="stylesheet" type="text/css" />
+		<meta name="viewpoint" content="width=device-width, initial-scale=1.0" />
 		<script type="text/javascript">
 			function active(){
 				var searchBar = document.getElementById('searchBar');
 				
-				if(searchBar.value == 'Search...'){
-					searchBar.value = ''
-					searchBar.placeholder = 'Search...'
-				}
+				searchBar.value = "";
+				searchBar.placeholder = 'Search...';
 			}
 			function inactive(){
 				var searchBar = document.getElementById('searchBar');
 				
-				if(searchBar.value == ''){
-					searchBar.value = 'Search...'
-					searchBar.placeholder = ''
-				}
+				searchBar.placeholder = 'Enter tag to search';
 			}
 		</script>
 	</head>
@@ -93,11 +90,9 @@
 				  <div class="sidebar_top"></div>
 				  <div class="sidebar_item">
 					<h3>Search</h3>
-					<form method="post" action="#" id="search_form">
-					  <p>
-						<input class="search" type="text" name="search_field" value="Enter keywords....." />
-						<input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
-					  </p>
+					<form method="GET" action="HomePage.php" id="search_form">
+						<input class="search" type="text" id="searchBar" name="search_field" placeholder="Enter Tag to Search" onclick="active()" onblur="inactive()"/>
+						<input type="submit" name="submit" value="Search"/>
 					</form>
 				  </div>
 				  <div class="sidebar_base"></div>
@@ -166,24 +161,68 @@
 
 			<?php
 				require("/connect.php");
+				if (isset($_GET['search_field'])) {
+					$tag_name = $_GET['search_field'];
+					
+					$query = "SELECT t.Task_ID, t.Title, DATEDIFF(Claim_D, NOW()) as DIFF 
+						      FROM (Tasks t JOIN Task_Status ts ON t.Task_ID = ts.Task_ID)
+							  JOIN Deadlines d ON ts.Task_ID = d.Task_ID
+							  WHERE ((t.Owner <> ".$_SESSION['user_id']." AND ts.Status = 'PENDING_CLAIM') AND d.Claim_D > CURDATE()) AND t.Task_ID IN
+							          (SELECT Task_Tags.Task_ID
+									   FROM (Task_Tags JOIN Tags ON Task_Tags.Tag_ID = Tags.Tag_ID)
+									   WHERE Tags.Title LIKE '%".$tag_name."%')
+							   ORDER BY d.Claim_D";
+							   
+					$result = $dbh->prepare($query);
+					$result->execute();
+					
+					if ($_GET['search_field'] == "") {
+						
+						$query = "SELECT t.Task_ID, t.Title, DATEDIFF(Claim_D, NOW()) as DIFF 
+						      FROM (Tasks t JOIN Task_Status ts ON t.Task_ID = ts.Task_ID)
+						      JOIN Deadlines d ON ts.Task_ID = d.Task_ID
+						      WHERE ((t.Owner <> ".$_SESSION['user_id']." AND ts.Status = 'PENDING_CLAIM') AND d.Claim_D > CURDATE()) AND t.Task_ID IN 
+						             (SELECT Task_Tags.Task_ID
+						              FROM (Task_Tags JOIN Tags ON Task_Tags.Tag_ID = Tags.Tag_ID) JOIN Courses ON Tags.Course_ID = Courses.Course_ID 
+						              WHERE Courses.Course_ID = ".$_SESSION['user']->getSubject().")
+						      ORDER BY d.Claim_D;";
+							  
+						$result = $dbh->prepare($query);
+						$result->execute();
+						
+						
+					}
+					
+					//LEAGUE IN 2017 MEGALUL
+				} else if (!isset($_GET['search_field'])) {
+					/*$course_id_result = $dbh->prepare("SELECT Tag_ID
+													   FROM Tags t JOIN Courses c ON t.Course_ID = c.Course_ID
+													   WHERE c.Course_ID = ".$_SESSION['user']->getSubject());
+					$course_id_result->execute();
+					
+					while($tag_row = $course_id_result->fetch(PDO::FETCH_ASSOC)) {
+						$tag_id = $tag_row['Tag_ID'];
+						echo "<h1>".$tag_id."</h1>";
+					} */
+					$query = "SELECT t.Task_ID, t.Title, DATEDIFF(Claim_D, NOW()) as DIFF 
+						      FROM (Tasks t JOIN Task_Status ts ON t.Task_ID = ts.Task_ID)
+						      JOIN Deadlines d ON ts.Task_ID = d.Task_ID
+						      WHERE ((t.Owner <> ".$_SESSION['user_id']." AND ts.Status = 'PENDING_CLAIM') AND d.Claim_D > CURDATE()) AND t.Task_ID IN 
+						             (SELECT Task_Tags.Task_ID
+						              FROM (Task_Tags JOIN Tags ON Task_Tags.Tag_ID = Tags.Tag_ID) JOIN Courses ON Tags.Course_ID = Courses.Course_ID 
+						              WHERE Courses.Course_ID = ".$_SESSION['user']->getSubject().")
+						      ORDER BY d.Claim_D;";
+							  
+					$result = $dbh->prepare($query);
+					$result->execute();
+					
+				}
 				/*
 				Get the task id and task title of each task
 				where the task does not belong to you and is available to be claimed.
 				The deadline for claiming that task should not have been reached.
 				*/
-				$co = $_SESSION['user']->getSubject();
-				$query = "SELECT t.Task_ID, t.Title, DATEDIFF(Claim_D, NOW()) as DIFF 
-						  FROM (Tasks t JOIN Task_Status ts ON t.Task_ID = ts.Task_ID)
-						  JOIN Deadlines d ON ts.Task_ID = d.Task_ID
-						  WHERE ((t.Owner <> :id AND ts.Status = 'PENDING_CLAIM') AND d.Claim_D > CURDATE()) AND t.Task_ID IN 
-						  (SELECT Task_Tags.Task_ID
-						   FROM (Task_Tags JOIN Tags ON Task_Tags.Tag_ID = Tags.Tag_ID) JOIN Courses ON Tags.Course_ID = Courses.Course_ID 
-						   WHERE Courses.Course_ID = :c_id)
-						   ORDER BY d.Claim_D;";
-				$result = $dbh->prepare($query);
-				$result->bindParam(':id', $_SESSION['user_id']);
-				$result->bindParam(':c_id', $co);
-				$result->execute(); 
+				 
 				
 				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 					echo "<p><a href='task_details.php?task_id=".$row['Task_ID']."&claim=1'>".$row['Title']."</a><br><strong>".$row['DIFF']."</strong> days left to claim!</p>";

@@ -368,3 +368,66 @@ table tr td
 	right: 500px;
 	top: 0;
 }
+/*Tablet view*/
+@media screen and (max-width:959px){
+	#header{
+		width:100%;
+	}
+	#menubar{
+		width:80%;
+	}
+	#site_content{
+		width:80%;
+	}
+	#siderbar_container{
+		width:25%;
+	}
+	#content{
+		width:60%;
+	}
+	#footer{
+		width:100%;
+	}
+}
+/*Phone view*/
+@media screen and (max-width:620px){
+	#header{
+		width:100%;
+	}
+	#menubar{
+		width:80%;
+	}
+	#site_content{
+		width:80%;
+	}
+	#siderbar_container{
+		width:25%;
+	}
+	#content{
+		width:60%;
+	}
+	#footer{
+		width:100%;
+	}
+}
+/*Don't scale down anymore, not many phones are smaller than 302px*/
+@media screen and (max-width:320px){
+	#header{
+		width:100%;
+	}
+	#menubar{
+		width:80%;
+	}
+	#site_content{
+		width:80%;
+	}
+	#siderbar_container{
+		width:25%;
+	}
+	#content{
+		width:60%;
+	}
+	#footer{
+		width:100%;
+	}
+}

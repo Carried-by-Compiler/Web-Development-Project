@@ -48,6 +48,7 @@ if (!isset($_SESSION['user'])) {
 		<meta name="keywords" content="website keywords, website keywords" />
 		<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
 		<link href="./css/taskdetails.css" rel="stylesheet" type="text/css" />
+		<meta name="viewpoint" content="width=device-width, initial-scale=1.0" />
 		<script>
 			function showDivFlag() {
 				document.getElementById('flag_div').style.display = "block";
