@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user'])) {
-	header("Location: index.php");
+	header("Location: index.html");
 } else {
 	if (isset($_POST['request'])) {
 		require("/connect.php");

@@ -12,7 +12,7 @@ session_start();
 
 // If the page is being accessed without being logged in
 if (!isset($_SESSION['user'])) { 
-	header("Location: login.php");
+	header("Location: login.html");
 } else {
 	if (!isset($_POST['claim'])) {
 		header("Location: HomePage.php");
