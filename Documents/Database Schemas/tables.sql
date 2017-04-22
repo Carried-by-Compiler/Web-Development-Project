@@ -116,3 +116,47 @@ CREATE TABLE IF NOT EXISTS `Flagged_Tasks` (
 	FOREIGN KEY(`Task_ID`) REFERENCES `Tasks`(`Task_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(`Flagger`) REFERENCES `Users`(`User_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
+
+/*
+These needs to be inserted otherwise users will not be able to be created
+*/
+
+INSERT INTO Courses (Course_ID, Name) VALUES
+(111, 'Computer Science'),
+(222, 'Engineering'),
+(333, "Mathematics"),
+(444, "Science"),
+(555, "Law"),
+(666, "Business");
+
+INSERT INTO Tags (Title, Course_ID) VALUES
+('programming', 111),
+('web design', 111),
+('operating systems', 111),
+('software testing', 111),
+('graphic design', 111),
+('games development', 111),
+('electronics', 222),
+('mechanics', 222),
+('aeronautics', 222),
+('civil', 222),
+('circuits', 222),
+('engineering maths', 222),
+('algebra', 333),
+('statistics', 333),
+('R', 333),
+('trigonometry', 333),
+('calculus', 333),
+('probability', 333),
+('graph theory', 333),
+('physics', 444),
+('chemistry', 444),
+('biology', 444),
+('contract law', 555),
+('civil rights law', 555),
+('maritime law', 555),
+('criminal law', 555),
+('family law', 555),
+('environmental law', 555),
+('money', 666),
+('accountancy', 666);
