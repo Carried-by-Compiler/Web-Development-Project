@@ -159,4 +159,6 @@ INSERT INTO Tags (Title, Course_ID) VALUES
 ('family law', 555),
 ('environmental law', 555),
 ('money', 666),
-('accountancy', 666);
+('accountancy', 666),
+('french', 666),
+('german', 666);

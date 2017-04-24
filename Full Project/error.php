@@ -12,7 +12,7 @@ if ($error_message == 101) {
 	
 	echo "<h1>Error!</h1>";
 	echo "<p>".$error_message."</p>";
-	echo "<a href='index.php'>Click to return</a>";
+	echo "<a href='index.html'>Click to return</a>";
 	
 }
 

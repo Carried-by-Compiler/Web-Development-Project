@@ -110,8 +110,8 @@ if (!isset($_SESSION['user'])) {
 					<h3><u>Other Info</u></h3>
 					<ul>
 						<li>Type: <?php echo $row['Type'];  ?></li>
-						<li>Words: <?php echo $row['Words'];  ?></li>
-						<li>Words: <?php echo $row['Pages'];  ?></li>
+						<li># of Words: <?php echo $row['Words'];  ?></li>
+						<li># of Pages: <?php echo $row['Pages'];  ?></li>
 						<li>Date created: <?php echo $row['Date_Created'];  ?></li>
 					</ul>
 					<h3><u>Task Status</u></h3>

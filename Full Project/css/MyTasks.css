@@ -258,7 +258,8 @@ ul#menu li a:hover
   text-align: center; 
   background: transparent url("pattern1.jpg") repeat;
   border-top: 2px solid #E7746F;
-  color: #FFF;}
+  color: #FFF;
+  margin-bottom:0px;}
 
 #footer p
 { line-height: 1.7em;

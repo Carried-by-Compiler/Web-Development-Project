@@ -20,8 +20,9 @@ function Validate()
 	var fPattern = /^[a-zA-Z]{3,}$/;
 	var passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/;
 	var idPattern = /^[0-9]{3,9}$/;
-	var emailPattern = /@studentmail.ul.ie\s*$/;
+	//var emailPattern = /@studentmail\.ul\.ie$/;
 	
+	alert(userEmail);
 	if(userNumber.value == "")
 	{
 		id_error.textContent = "User number is required";
@@ -60,25 +61,36 @@ function Validate()
 	if(!(fPattern.test(sName.value)))
 	{
 		name_error.textContent = "Surname is invalid";
-		fName.style.border = "1px solid red";
-		fName.focus();
+		sName.style.border = "1px solid red";
+		sName.focus();
 		return false;
 	}
-	if(email.value == ""){
+	/*if(!(emailPattern.test(userEmail.value)))
+	{
+		email_error.textContent = "Email not correct";
+		userEmail.style.border = "1px solid red";
+		userEmail.focus();
+		return false;
+	}*/
+	if(userEmail.value == "")
+	{
 		email_error.textContent = "Email is required";
-		email.style.border = "1px solid red";
-		email.focus();
+		userEmail.style.border = "1px solid red";
+		userEmail.focus();
 		return false;
 	}
-	if(!((email.value)))
-	if (pass.value != confirmPass.value) {
+	
+
+	if (pass.value != confirmPass.value) 
+	{
 		password_error.textContent = "The two passwords do not match";
 		pass.style.border = "1px solid red";
 		confirmPass.style.border = "1px solid red";
-		password.focus();
+		pass.focus();
 		return false;
 	}
-	if (pass.value == "" || confirmPass.value == "") {
+	if (pass.value == "" || confirmPass.value == "") 
+	{
 		password_error.textContent = "Password required";
 		pass.style.border = "1px solid red";
 		confirmPass.style.border = "1px solid red";
@@ -88,14 +100,14 @@ function Validate()
 	
 	if(!(passwordPattern.test(password.value)))
 	{
-		password_error.textContent = "Password is incorrect format";
+		password_error.textContent = "Password must contain a upper case, lower case, number and special character";
 		password.style.border = "1px solid red";
-		password.focus();
+		pass.focus();
 		return false;
 	}
 }
 	
-function nameVerify(){
+/*function nameVerify(){
 	if (username.value != "") {
 		name_error.innerHTML = "";
 		username.style.border = "1px solid #110E0F";
@@ -109,4 +121,4 @@ function emailVerify(){
 		email.style.border = "1px solid #110E0F";
 		return true;
 	}
-}
+}*/

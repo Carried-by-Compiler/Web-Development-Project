@@ -130,6 +130,7 @@ if (!isset($_SESSION['user'])) {
 			}
 		?>
 		</select>
+		
 		<br>Number of words:<br>
 		<input type="number" name="words" min="1"><br>
 		<br>Number of pages:<br>
